@@ -1519,14 +1519,18 @@ async function init() {
       }
       // Listen for auth state changes
       sb.auth.onAuthStateChange(async (event, session) => {
-        if (event === 'SIGNED_IN' && session) {
-          currentUser = session.user;
-          await onSignIn();
-        } else if (event === 'SIGNED_OUT') {
-          currentUser = null;
-          updateUserBar();
-        }
-      });
+  if (event === 'SIGNED_IN' && session) {
+    currentUser = session.user;
+    await onSignIn();
+    
+    // FORCE VISUAL UPDATE ON LOGIN:
+    updateUserBar(); 
+    
+  } else if (event === 'SIGNED_OUT') {
+    currentUser = null;
+    updateUserBar();
+  }
+});
     }
   } catch(e) { console.log('Auth init error:', e); }
 
