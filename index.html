@@ -644,16 +644,7 @@ details>summary::-webkit-details-marker{display:none}
     <div id="profile-content"></div>
   </div>
 </div>
-  
-<footer style="
-  text-align:center;
-  padding:16px;
-  font-size:11px;
-  color:var(--muted);
-">
-  © 2026 NeuroResilience Consulting Inc. All rights reserved.
-</footer>
-  
+
 </div><!-- end screen -->
 
 <!-- BOTTOM NAV -->
@@ -1413,7 +1404,7 @@ async function signInWithGoogle() {
     const { error } = await sb.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: redirectTo: window.location.origin + window.location.pathname
+        redirectTo: window.location.href
       }
     });
     if (error) throw error;
