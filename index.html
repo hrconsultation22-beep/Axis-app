@@ -2121,41 +2121,10 @@ async function analyseFoodImage() {
     var detectedText = textAnnotations.length > 0 ? textAnnotations[0].description : '';
     var foodName = foodLabels.length > 0 ? foodLabels[0] : 'Food item';
 
-    // STEP 2: Open Food Facts — free, no key, CORS enabled
-    var macros = {calories:0, protein:0, carbs:0, fat:0, fiber:0};
-    var micros = [];
+    // STEP 2: Local nutrition estimation from Vision labels — no external API needed
+    var macros = estimateMacrosFromLabels(foodLabels);
+    var micros = estimateMicrosFromLabels(foodLabels);
     var usdaFoodName = foodName;
-
-    try {
-      var offRes = await fetch(
-        'https://world.openfoodfacts.org/cgi/search.pl?search_terms=' + encodeURIComponent(foodName) + '&search_simple=1&action=process&json=1&page_size=1&fields=product_name,nutriments',
-        {headers: {'User-Agent': 'AxisApp/1.0'}}
-      );
-      if (offRes.ok) {
-        var offData = await offRes.json();
-        if (offData.products && offData.products.length > 0) {
-          var prod = offData.products[0];
-          usdaFoodName = prod.product_name || foodName;
-          var n = prod.nutriments || {};
-          macros = {
-            calories: Math.round(n['energy-kcal_100g'] || n['energy_100g']/4.184 || 0),
-            protein: Math.round((n['proteins_100g'] || 0) * 10) / 10,
-            carbs: Math.round((n['carbohydrates_100g'] || 0) * 10) / 10,
-            fat: Math.round((n['fat_100g'] || 0) * 10) / 10,
-            fiber: Math.round((n['fiber_100g'] || 0) * 10) / 10
-          };
-          micros = [
-            n['sodium_100g'] ? {name:'Sodium', amount: Math.round(n['sodium_100g']*1000) + 'mg', role:'Regulates fluid balance and nerve impulse transmission.'} : null,
-            n['potassium_100g'] ? {name:'Potassium', amount: Math.round(n['potassium_100g']*1000) + 'mg', role:'Maintains electrical gradients across neuron membranes.'} : null,
-            n['calcium_100g'] ? {name:'Calcium', amount: Math.round(n['calcium_100g']*1000) + 'mg', role:'Required for neurotransmitter release at the synapse.'} : null,
-            n['iron_100g'] ? {name:'Iron', amount: Math.round(n['iron_100g']*1000) + 'mg', role:'Required for dopamine synthesis and oxygen delivery to the brain.'} : null
-          ].filter(Boolean);
-        }
-      }
-    } catch(nutritionErr) {
-      // Nutrition lookup failed - continue with estimates from labels
-      macros = estimateMacrosFromLabels(foodLabels);
-    }
 
     // STEP 3: CNS analysis
     var goal = (typeof profile !== 'undefined' && profile) ? profile.goal : 'general';
@@ -2182,22 +2151,101 @@ async function analyseFoodImage() {
 }
 
 
+// Built-in nutrition reference table — no API needed
+var FOOD_DB = {
+  // Proteins
+  'chicken':    {cal:165,pro:31,carb:0,fat:4,fib:0},
+  'beef':       {cal:250,pro:26,carb:0,fat:15,fib:0},
+  'salmon':     {cal:208,pro:28,carb:0,fat:10,fib:0},
+  'tuna':       {cal:130,pro:29,carb:0,fat:1,fib:0},
+  'fish':       {cal:150,pro:25,carb:0,fat:5,fib:0},
+  'pork':       {cal:240,pro:27,carb:0,fat:14,fib:0},
+  'turkey':     {cal:165,pro:30,carb:0,fat:4,fib:0},
+  'egg':        {cal:155,pro:13,carb:1,fat:11,fib:0},
+  'shrimp':     {cal:100,pro:24,carb:0,fat:1,fib:0},
+  // Dairy
+  'cheese':     {cal:400,pro:25,carb:1,fat:33,fib:0},
+  'milk':       {cal:61,pro:3,carb:5,fat:3,fib:0},
+  'yogurt':     {cal:100,pro:9,carb:14,fat:1,fib:0},
+  // Grains
+  'rice':       {cal:206,pro:4,carb:45,fat:0,fib:1},
+  'pasta':      {cal:220,pro:8,carb:43,fat:1,fib:2},
+  'bread':      {cal:265,pro:9,carb:49,fat:3,fib:3},
+  'oat':        {cal:389,pro:17,carb:66,fat:7,fib:11},
+  'cereal':     {cal:379,pro:7,carb:84,fat:2,fib:3},
+  'quinoa':     {cal:222,pro:8,carb:39,fat:4,fib:5},
+  // Vegetables
+  'broccoli':   {cal:55,pro:4,carb:11,fat:1,fib:5},
+  'spinach':    {cal:23,pro:3,carb:4,fat:0,fib:2},
+  'salad':      {cal:20,pro:2,carb:4,fat:0,fib:2},
+  'carrot':     {cal:41,pro:1,carb:10,fat:0,fib:3},
+  'vegetable':  {cal:50,pro:3,carb:10,fat:0,fib:4},
+  'potato':     {cal:161,pro:4,carb:37,fat:0,fib:4},
+  'sweet potato':{cal:103,pro:2,carb:24,fat:0,fib:4},
+  // Fruits
+  'apple':      {cal:95,pro:0,carb:25,fat:0,fib:4},
+  'banana':     {cal:105,pro:1,carb:27,fat:0,fib:3},
+  'berry':      {cal:57,pro:1,carb:14,fat:0,fib:4},
+  'orange':     {cal:62,pro:1,carb:15,fat:0,fib:3},
+  'mango':      {cal:201,pro:3,carb:50,fat:1,fib:5},
+  'fruit':      {cal:80,pro:1,carb:20,fat:0,fib:3},
+  // Nuts and seeds
+  'almond':     {cal:579,pro:21,carb:22,fat:50,fib:13},
+  'walnut':     {cal:654,pro:15,carb:14,fat:65,fib:7},
+  'peanut':     {cal:567,pro:26,carb:16,fat:49,fib:9},
+  'nut':        {cal:600,pro:15,carb:20,fat:54,fib:7},
+  // Fast food / processed
+  'pizza':      {cal:285,pro:12,carb:36,fat:10,fib:2},
+  'burger':     {cal:354,pro:20,carb:29,fat:17,fib:1},
+  'sandwich':   {cal:350,pro:18,carb:40,fat:12,fib:3},
+  'hot dog':    {cal:290,pro:11,carb:23,fat:17,fib:1},
+  'fries':      {cal:312,pro:3,carb:41,fat:15,fib:4},
+  'chips':      {cal:547,pro:7,carb:50,fat:35,fib:5},
+  'cookie':     {cal:480,pro:5,carb:65,fat:23,fib:2},
+  'cake':       {cal:385,pro:5,carb:56,fat:17,fib:1},
+  'chocolate':  {cal:546,pro:5,carb:60,fat:31,fib:7},
+  // Beverages
+  'coffee':     {cal:5,pro:0,carb:1,fat:0,fib:0},
+  'juice':      {cal:112,pro:1,carb:26,fat:0,fib:0},
+  'smoothie':   {cal:150,pro:4,carb:32,fat:1,fib:3},
+};
+
 function estimateMacrosFromLabels(labels) {
   var labelsLower = labels.map(function(l){ return l.toLowerCase(); });
-  var isMeat = labelsLower.some(function(l){ return ['meat','chicken','beef','fish','salmon','tuna','pork','turkey'].some(function(k){ return l.indexOf(k)!==-1; }); });
-  var isDairy = labelsLower.some(function(l){ return ['milk','cheese','yogurt','dairy','butter','cream'].some(function(k){ return l.indexOf(k)!==-1; }); });
-  var isVeg = labelsLower.some(function(l){ return ['vegetable','salad','broccoli','spinach','kale','carrot'].some(function(k){ return l.indexOf(k)!==-1; }); });
-  var isFruit = labelsLower.some(function(l){ return ['fruit','apple','banana','berry','orange','mango'].some(function(k){ return l.indexOf(k)!==-1; }); });
-  var isGrain = labelsLower.some(function(l){ return ['bread','rice','pasta','grain','oat','cereal','wheat'].some(function(k){ return l.indexOf(k)!==-1; }); });
-  var isNut = labelsLower.some(function(l){ return ['nut','almond','walnut','peanut','cashew'].some(function(k){ return l.indexOf(k)!==-1; }); });
-
-  if (isMeat) return {calories:200, protein:26, carbs:0, fat:9, fiber:0};
-  if (isDairy) return {calories:150, protein:8, carbs:12, fat:8, fiber:0};
-  if (isVeg) return {calories:50, protein:3, carbs:8, fat:1, fiber:4};
-  if (isFruit) return {calories:80, protein:1, carbs:20, fat:0, fiber:3};
-  if (isGrain) return {calories:250, protein:8, carbs:45, fat:3, fiber:3};
-  if (isNut) return {calories:180, protein:5, carbs:6, fat:16, fiber:2};
+  // Try exact match first
+  for (var key in FOOD_DB) {
+    if (labelsLower.some(function(l){ return l.indexOf(key) !== -1; })) {
+      var d = FOOD_DB[key];
+      return {calories:d.cal, protein:d.pro, carbs:d.carb, fat:d.fat, fiber:d.fib};
+    }
+  }
+  // Category fallback
+  var isProcessed = labelsLower.some(function(l){ return ['junk','fast food','processed','snack'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  if (isProcessed) return {calories:400, protein:8, carbs:50, fat:18, fiber:1};
   return {calories:200, protein:10, carbs:25, fat:8, fiber:2};
+}
+
+function estimateMicrosFromLabels(labels) {
+  var labelsLower = labels.map(function(l){ return l.toLowerCase(); });
+  var micros = [];
+  var isMeat = labelsLower.some(function(l){ return ['meat','chicken','beef','fish','pork','turkey'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isLeafy = labelsLower.some(function(l){ return ['spinach','broccoli','kale','vegetable','salad'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isDairy = labelsLower.some(function(l){ return ['milk','cheese','yogurt'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isNut = labelsLower.some(function(l){ return ['nut','almond','walnut','peanut','seed'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isEgg = labelsLower.some(function(l){ return l.indexOf('egg') !== -1; });
+  var isFish = labelsLower.some(function(l){ return ['fish','salmon','tuna','sardine'].some(function(k){ return l.indexOf(k)!==-1; }); });
+
+  if (isMeat) micros.push({name:'Iron', amount:'2–3mg est.', role:'Required for dopamine synthesis and oxygen delivery to the brain.'});
+  if (isMeat || isEgg) micros.push({name:'Vitamin B-12', amount:'1–2mcg est.', role:'Essential for myelin sheath integrity — the insulation around nerve fibres.'});
+  if (isLeafy) micros.push({name:'Magnesium', amount:'30–50mg est.', role:'Required for neurotransmitter synthesis and CNS recovery.'});
+  if (isLeafy) micros.push({name:'Folate', amount:'50–100mcg est.', role:'Critical for dopamine and serotonin synthesis pathways.'});
+  if (isDairy) micros.push({name:'Calcium', amount:'200–300mg est.', role:'Required for neurotransmitter release at the synapse.'});
+  if (isNut) micros.push({name:'Magnesium', amount:'50–80mg est.', role:'Required for neurotransmitter synthesis and CNS recovery.'});
+  if (isNut) micros.push({name:'Zinc', amount:'1–2mg est.', role:'Co-factor for testosterone synthesis and GABA receptor function.'});
+  if (isFish) micros.push({name:'Omega-3', amount:'1–2g est.', role:'DHA is a structural component of brain cell membranes — reduces neuroinflammation.'});
+  if (isEgg) micros.push({name:'Choline', amount:'150–200mg est.', role:'Direct precursor for acetylcholine — the neuromuscular junction neurotransmitter.'});
+
+  return micros.slice(0, 4);
 }
 
 function buildCNSAnalysis(rawName, usdaName, macros, micros, labels, text, goal) {
