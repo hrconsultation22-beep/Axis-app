@@ -2067,6 +2067,30 @@ function resetFoodScanner() {
 
 async function analyseFoodImage() {
   if (!foodImageB64) return;
+
+  // Compress image if too large (Vision API limit is 10MB, but smaller is faster)
+  var b64ToSend = foodImageB64;
+  if (foodImageB64.length > 500000) {
+    try {
+      var img = new Image();
+      var canvas = document.createElement('canvas');
+      await new Promise(function(resolve, reject) {
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = 'data:image/jpeg;base64,' + foodImageB64;
+      });
+      var maxSize = 800;
+      var ratio = Math.min(maxSize/img.width, maxSize/img.height, 1);
+      canvas.width = Math.round(img.width * ratio);
+      canvas.height = Math.round(img.height * ratio);
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      b64ToSend = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+    } catch(compressErr) {
+      b64ToSend = foodImageB64; // use original if compression fails
+    }
+  }
+
   var prevEl = document.getElementById('food-preview-section');
   var loadEl = document.getElementById('food-loading');
   var resEl = document.getElementById('food-results');
@@ -2077,14 +2101,16 @@ async function analyseFoodImage() {
 
   try {
     // STEP 1: Google Vision — identify the food
+    // Test if fetch works at all
     var visionRes = await fetch(
       'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyD1M_2FdOFF_lIT1VkLSvkuhfyO6bCaqVU',
       {
         method: 'POST',
+        mode: 'cors',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           requests: [{
-            image: {content: foodImageB64},
+            image: {content: b64ToSend},
             features: [
               {type: 'LABEL_DETECTION', maxResults: 10},
               {type: 'TEXT_DETECTION', maxResults: 1}
@@ -2095,8 +2121,8 @@ async function analyseFoodImage() {
     );
 
     if (!visionRes.ok) {
-      var errText = await visionRes.text();
-      throw new Error('Vision API HTTP ' + visionRes.status + ': ' + errText.substring(0, 200));
+      var errText = await visionRes.text().catch(function(){ return 'no body'; });
+      throw new Error('Vision API HTTP ' + visionRes.status + ' ' + visionRes.statusText + ': ' + errText.substring(0, 300));
     }
 
     var visionData = await visionRes.json();
