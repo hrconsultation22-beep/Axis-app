@@ -2121,48 +2121,40 @@ async function analyseFoodImage() {
     var detectedText = textAnnotations.length > 0 ? textAnnotations[0].description : '';
     var foodName = foodLabels.length > 0 ? foodLabels[0] : 'Food item';
 
-    // STEP 2: USDA FoodData Central — nutrition data (free, no key needed)
-    var usdaRes = await fetch(
-      'https://api.nal.usda.gov/fdc/v1/foods/search?query=' + encodeURIComponent(foodName) + '&pageSize=1&api_key=DEMO_KEY'
-    );
-    var usdaData = await usdaRes.json();
-
+    // STEP 2: Open Food Facts — free, no key, CORS enabled
     var macros = {calories:0, protein:0, carbs:0, fat:0, fiber:0};
     var micros = [];
     var usdaFoodName = foodName;
 
-    if (usdaData.foods && usdaData.foods.length > 0) {
-      var food = usdaData.foods[0];
-      usdaFoodName = food.description || foodName;
-      var nutrients = food.foodNutrients || [];
-
-      function getNutrient(name) {
-        var n = nutrients.find(function(x){ return x.nutrientName && x.nutrientName.toLowerCase().indexOf(name.toLowerCase()) !== -1; });
-        return n ? Math.round(n.value * 10) / 10 : 0;
+    try {
+      var offRes = await fetch(
+        'https://world.openfoodfacts.org/cgi/search.pl?search_terms=' + encodeURIComponent(foodName) + '&search_simple=1&action=process&json=1&page_size=1&fields=product_name,nutriments',
+        {headers: {'User-Agent': 'AxisApp/1.0'}}
+      );
+      if (offRes.ok) {
+        var offData = await offRes.json();
+        if (offData.products && offData.products.length > 0) {
+          var prod = offData.products[0];
+          usdaFoodName = prod.product_name || foodName;
+          var n = prod.nutriments || {};
+          macros = {
+            calories: Math.round(n['energy-kcal_100g'] || n['energy_100g']/4.184 || 0),
+            protein: Math.round((n['proteins_100g'] || 0) * 10) / 10,
+            carbs: Math.round((n['carbohydrates_100g'] || 0) * 10) / 10,
+            fat: Math.round((n['fat_100g'] || 0) * 10) / 10,
+            fiber: Math.round((n['fiber_100g'] || 0) * 10) / 10
+          };
+          micros = [
+            n['sodium_100g'] ? {name:'Sodium', amount: Math.round(n['sodium_100g']*1000) + 'mg', role:'Regulates fluid balance and nerve impulse transmission.'} : null,
+            n['potassium_100g'] ? {name:'Potassium', amount: Math.round(n['potassium_100g']*1000) + 'mg', role:'Maintains electrical gradients across neuron membranes.'} : null,
+            n['calcium_100g'] ? {name:'Calcium', amount: Math.round(n['calcium_100g']*1000) + 'mg', role:'Required for neurotransmitter release at the synapse.'} : null,
+            n['iron_100g'] ? {name:'Iron', amount: Math.round(n['iron_100g']*1000) + 'mg', role:'Required for dopamine synthesis and oxygen delivery to the brain.'} : null
+          ].filter(Boolean);
+        }
       }
-
-      macros = {
-        calories: Math.round(getNutrient('Energy') || 0),
-        protein: getNutrient('Protein'),
-        carbs: getNutrient('Carbohydrate'),
-        fat: getNutrient('Total lipid'),
-        fiber: getNutrient('Fiber')
-      };
-
-      var microDefs = [
-        {s:'Magnesium', r:'Required for neurotransmitter synthesis and CNS recovery.'},
-        {s:'Zinc', r:'Co-factor for testosterone synthesis and GABA receptor function.'},
-        {s:'Vitamin B-12', r:'Essential for myelin sheath integrity — the insulation around nerve fibres.'},
-        {s:'Iron', r:'Required for dopamine synthesis and oxygen delivery to the brain.'},
-        {s:'Vitamin D', r:'Regulates BDNF — the brain primary growth hormone for neuroplasticity.'},
-        {s:'Potassium', r:'Maintains electrical gradients across neuron membranes.'}
-      ];
-
-      micros = microDefs.map(function(m) {
-        var n = nutrients.find(function(x){ return x.nutrientName && x.nutrientName.toLowerCase().indexOf(m.s.toLowerCase()) !== -1; });
-        if (n && n.value > 0) return {name: m.s, amount: (Math.round(n.value*10)/10) + ' ' + (n.unitName||''), role: m.r};
-        return null;
-      }).filter(Boolean).slice(0, 4);
+    } catch(nutritionErr) {
+      // Nutrition lookup failed - continue with estimates from labels
+      macros = estimateMacrosFromLabels(foodLabels);
     }
 
     // STEP 3: CNS analysis
@@ -2187,6 +2179,25 @@ async function analyseFoodImage() {
       resEl.innerHTML = '<div class="card rt"><div class="label-xs r">Analysis error</div><div class="card-body">' + (e.message||'Could not identify the food. Try a clearer photo.') + '</div></div>';
     }
   }
+}
+
+
+function estimateMacrosFromLabels(labels) {
+  var labelsLower = labels.map(function(l){ return l.toLowerCase(); });
+  var isMeat = labelsLower.some(function(l){ return ['meat','chicken','beef','fish','salmon','tuna','pork','turkey'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isDairy = labelsLower.some(function(l){ return ['milk','cheese','yogurt','dairy','butter','cream'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isVeg = labelsLower.some(function(l){ return ['vegetable','salad','broccoli','spinach','kale','carrot'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isFruit = labelsLower.some(function(l){ return ['fruit','apple','banana','berry','orange','mango'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isGrain = labelsLower.some(function(l){ return ['bread','rice','pasta','grain','oat','cereal','wheat'].some(function(k){ return l.indexOf(k)!==-1; }); });
+  var isNut = labelsLower.some(function(l){ return ['nut','almond','walnut','peanut','cashew'].some(function(k){ return l.indexOf(k)!==-1; }); });
+
+  if (isMeat) return {calories:200, protein:26, carbs:0, fat:9, fiber:0};
+  if (isDairy) return {calories:150, protein:8, carbs:12, fat:8, fiber:0};
+  if (isVeg) return {calories:50, protein:3, carbs:8, fat:1, fiber:4};
+  if (isFruit) return {calories:80, protein:1, carbs:20, fat:0, fiber:3};
+  if (isGrain) return {calories:250, protein:8, carbs:45, fat:3, fiber:3};
+  if (isNut) return {calories:180, protein:5, carbs:6, fat:16, fiber:2};
+  return {calories:200, protein:10, carbs:25, fat:8, fiber:2};
 }
 
 function buildCNSAnalysis(rawName, usdaName, macros, micros, labels, text, goal) {
