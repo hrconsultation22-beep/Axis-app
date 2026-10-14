@@ -2093,12 +2093,33 @@ async function analyseFoodImage() {
         })
       }
     );
+
+    if (!visionRes.ok) {
+      var errText = await visionRes.text();
+      throw new Error('Vision API HTTP ' + visionRes.status + ': ' + errText.substring(0, 200));
+    }
+
     var visionData = await visionRes.json();
-    var labels = (visionData.responses[0].labelAnnotations || []);
-    var textAnnotations = (visionData.responses[0].textAnnotations || []);
+    console.log('Vision response:', JSON.stringify(visionData).substring(0, 500));
+
+    if (!visionData.responses || visionData.responses.length === 0) {
+      throw new Error('Vision API returned no data. Go to console.cloud.google.com → APIs and Services → Library → search Cloud Vision API → Enable it.');
+    }
+
+    if (visionData.error) {
+      throw new Error('Vision API error: ' + (visionData.error.message || 'Unknown error'));
+    }
+
+    var response0 = visionData.responses[0] || {};
+    if (response0.error) {
+      throw new Error('Vision API: ' + (response0.error.message || 'Could not process this image'));
+    }
+
+    var labels = (response0.labelAnnotations || []);
+    var textAnnotations = (response0.textAnnotations || []);
     var foodLabels = labels.filter(function(l){ return l.score > 0.6; }).map(function(l){ return l.description; }).slice(0, 5);
     var detectedText = textAnnotations.length > 0 ? textAnnotations[0].description : '';
-    var foodName = foodLabels[0] || 'Food item';
+    var foodName = foodLabels.length > 0 ? foodLabels[0] : 'Food item';
 
     // STEP 2: USDA FoodData Central — nutrition data (free, no key needed)
     var usdaRes = await fetch(
