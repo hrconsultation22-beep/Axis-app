@@ -1517,22 +1517,24 @@ async function init() {
         profile = STORE.get('profile');
         unlocked = STORE.get('unlocked') || false;
       }
-      // Listen for auth state changes
-      sb.auth.onAuthStateChange(async (event, session) => {
-  if (event === 'SIGNED_IN' && session) {
-    currentUser = session.user;
-    await onSignIn();
-    
-    // FORCE VISUAL UPDATE ON LOGIN:
-    updateUserBar(); 
-    
-  } else if (event === 'SIGNED_OUT') {
-    currentUser = null;
-    updateUserBar();
-  }
-});
+  try {
+  // Listen for auth state changes
+  sb.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+      currentUser = session.user;
+      await onSignIn();
+      
+      // FORCE VISUAL UPDATE ON LOGIN:
+      updateUserBar(); 
+      
+    } else if (event === 'SIGNED_OUT') {
+      currentUser = null;
+      updateUserBar();
     }
-  } catch(e) { console.log('Auth init error:', e); }
+  });
+} catch(e) { 
+  console.log('Auth init error:', e); 
+}
 
   // Always update UI
   updateUserBar();
