@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src https://fwravakcuoznizuariik.supabase.co; base-uri 'none'; form-action 'none'">
+<title>What would help? Anonymous workplace wellbeing survey | NeuroResilience Consulting</title>
+<meta name="description" content="Does your workplace really support your mental and physical wellbeing? An anonymous community survey from NeuroResilience Consulting Inc., Cape Breton, Nova Scotia.">
+<link rel="icon" href="data:,">
+<style>
+:root{
+  --bg:#0a0d14; --card:#131829; --field:#0f1320;
+  --text:#f7f5ef; --soft:#b8bdd4; --hint:#8b91b0;
+  --gold:#c9a84c; --gold-text:#c9a84c; --goldp:rgba(201,168,76,.12); --on-gold:#0a0d14;
+  --teal:#2ec4b6;
+  --border:#232a45; --ctl:#6b7699; --focus:#c9a84c;
+  --red:#f87171; --redp:rgba(248,113,113,.10);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f7f5ef; --card:#ffffff; --field:#ffffff;
+    --text:#0e1b3d; --soft:#3d4766; --hint:#555f7e;
+    --gold:#c9a84c; --gold-text:#7a5f12; --goldp:rgba(201,168,76,.16); --on-gold:#0e1b3d;
+    --teal:#0b6f66;
+    --border:#d9d5c7; --ctl:#77756a; --focus:#0e1b3d;
+    --red:#b42318; --redp:rgba(180,35,24,.07);
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:680px;margin:0 auto;padding:28px 18px 56px}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--gold);color:var(--on-gold);padding:10px 14px;border-radius:8px;font-weight:700;z-index:10}
+.skip:focus{left:12px}
+.sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+a{color:var(--teal)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+
+.org{font-size:14px;font-weight:600;color:var(--teal);letter-spacing:.04em;margin:0}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:clamp(36px,9vw,56px);line-height:1.08;margin:8px 0 16px;letter-spacing:-.01em}
+.lede{font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.5;color:var(--soft);margin:0 0 12px}
+.meta{font-size:14px;color:var(--hint);margin:0 0 24px}
+.intro{margin:0 0 20px;color:var(--soft)}
+
+.crisis{background:var(--redp);border:1px solid var(--red);border-radius:14px;padding:16px 18px;margin:0 0 24px}
+.crisis p{margin:0}
+.crisis a{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.crisis .alt{margin-top:8px;font-size:15px;color:var(--soft)}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 18px 6px;margin:0 0 18px}
+.card>h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:24px;line-height:1.2;margin:0 0 4px}
+.card>.sub{font-size:14px;color:var(--hint);margin:0 0 20px}
+
+fieldset{border:0;margin:0 0 26px;padding:0;min-width:0}
+legend,.qlabel{display:block;padding:0;margin:0 0 10px;font-weight:600;font-size:17px;line-height:1.4}
+.qn{display:inline-block;min-width:1.7em;color:var(--gold-text);font-weight:700}
+.hint{font-size:14px;color:var(--hint);margin:-4px 0 10px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 14px;border:1px solid var(--ctl);border-radius:10px;background:var(--field);cursor:pointer}
+.opt:has(input:checked){border-color:var(--gold);background:var(--goldp)}
+.opt input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--gold)}
+.opt input:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.scale label{position:relative;display:block}
+.scale input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.scale .n{display:flex;align-items:center;justify-content:center;min-height:54px;border:1px solid var(--ctl);border-radius:10px;background:var(--field);font-weight:700;font-size:19px}
+.scale input:checked+.n{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.scale input:focus-visible+.n{outline:3px solid var(--focus);outline-offset:3px}
+.ends{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--hint);margin-top:6px}
+
+.linkbtn{background:none;border:0;padding:8px 2px;margin-top:2px;font:inherit;font-size:14px;color:var(--teal);text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:36px}
+
+textarea,input[type=email]{display:block;width:100%;font:inherit;color:var(--text);background:var(--field);border:1px solid var(--ctl);border-radius:10px;padding:12px 14px}
+textarea{min-height:132px;resize:vertical}
+textarea:focus-visible,input[type=email]:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-color:var(--gold)}
+input[aria-invalid=true]{border-color:var(--red)}
+.count{font-size:13px;color:var(--hint);text-align:right;margin:4px 0 0}
+.count.near{color:var(--gold-text);font-weight:600}
+.nudge{font-size:14px;color:var(--gold-text);margin:4px 0 0}
+.fielderr{font-size:14px;color:var(--red);margin:6px 0 0}
+.note{font-size:14px;color:var(--hint);margin:10px 0 0}
+.fine{font-size:14px;color:var(--hint);margin:12px 0 0;text-align:center}
+
+.errs{background:var(--redp);border:1px solid var(--red);border-radius:12px;padding:14px 16px;margin:0 0 16px}
+.errs:focus{outline:3px solid var(--focus);outline-offset:2px}
+.errs strong{display:block;margin-bottom:4px}
+.errs ul{margin:0;padding-left:20px}
+.errs .ref{display:block;margin-top:6px;font-size:13px;color:var(--hint)}
+
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:0 28px;border:0;border-radius:12px;background:var(--gold);color:var(--on-gold);font:inherit;font-size:18px;font-weight:700;cursor:pointer}
+.btn:disabled{opacity:.65;cursor:progress}
+
+.hp{position:absolute!important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+
+#thanks h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:30px;line-height:1.2;margin:8px 0 12px}
+#thanks h2:focus{outline:none}
+#thanks p{margin:0 0 18px;color:var(--soft)}
+.home{display:inline-block;font-weight:700;margin:4px 0 8px}
+
+footer{margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--hint)}
+footer p{margin:0 0 8px}
+@media (max-width:420px){.scale{gap:6px}.card{padding-left:14px;padding-right:14px}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<a class="skip" href="#survey-form">Skip to the questions</a>
+<div class="wrap">
+
+<header>
+  <p class="org">NeuroResilience Consulting Inc.</p>
+  <h1>What would help?</h1>
+  <p class="lede">Does your workplace really support your mental and physical wellbeing? Tell us what's working, what's missing, and what would help.</p>
+  <p class="meta">Anonymous · about 5 minutes · NeuroResilience Consulting Inc., Cape Breton</p>
+</header>
+
+<main id="main">
+<noscript><div class="errs"><strong>This survey needs JavaScript.</strong>Please turn JavaScript on in your browser and reload the page.</div></noscript>
+
+<div id="survey-view">
+  <p class="intro">NeuroResilience Consulting is gathering anonymous views on how Nova Scotia workplaces support wellbeing. Results will be shared publicly as group findings only. Please don't include names of people or employers, or personal health details. Every question is optional, and taking part is voluntary.</p>
+
+  <aside class="crisis" id="crisis" aria-label="Crisis support">
+    <p>If you're struggling, you don't have to wait. Call or text <a href="tel:988">988</a> any time, or call the Nova Scotia Mental Health and Addictions Crisis Line at <a href="tel:+18884298167">1-888-429-8167</a>. In an emergency, call <a href="tel:911">911</a>.</p>
+    <p class="alt">Prefer to text? <a href="sms:988">Text 988</a></p>
+  </aside>
+
+  <form id="survey-form" novalidate autocomplete="off">
+
+    <section class="card" aria-labelledby="h-work">
+      <h2 id="h-work">About your workplace</h2>
+      <p class="sub">All questions are optional.</p>
+
+      <fieldset id="f-sector">
+        <legend><span class="qn" aria-hidden="true">1</span>Sector</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="sector" value="Construction and trades"> Construction and trades</label>
+          <label class="opt"><input type="radio" name="sector" value="Health care"> Health care</label>
+          <label class="opt"><input type="radio" name="sector" value="Retail and food service"> Retail and food service</label>
+          <label class="opt"><input type="radio" name="sector" value="Education"> Education</label>
+          <label class="opt"><input type="radio" name="sector" value="Fitness and recreation"> Fitness and recreation</label>
+          <label class="opt"><input type="radio" name="sector" value="Non-profit"> Non-profit</label>
+          <label class="opt"><input type="radio" name="sector" value="Public sector"> Public sector</label>
+          <label class="opt"><input type="radio" name="sector" value="Other"> Other</label>
+        </div>
+        <button type="button" class="linkbtn" data-clear="sector" hidden>Clear answer</button>
+      </fieldset>
+
+      <fieldset id="f-size">
+        <legend><span class="qn" aria-hidden="true">2</span>Workplace size</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="workplace_size" value="Under 20"> Under 20</label>
+          <label class="opt"><input type="radio" name="workplace_size" value="20 to 99"> 20 to 99</label>
+          <label class="opt"><input type="radio" name="workplace_size" value="100 to 499"> 100 to 499</label>
+          <label class="opt"><input type="radio" name="workplace_size" value="500 or more"> 500 or more</label>
+        </div>
+        <button type="button" class="linkbtn" data-clear="workplace_size" hidden>Clear answer</button>
+      </fieldset>
+
+      <fieldset id="f-loc">
+        <legend><span class="qn" aria-hidden="true">3</span>Where do you work</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="work_location" value="Cape Breton"> Cape Breton</label>
+          <label class="opt"><input type="radio" name="work_location" value="Rest of Nova Scotia"> Rest of Nova Scotia</label>
+          <label class="opt"><input type="radio" name="work_location" value="Elsewhere"> Elsewhere</label>
+        </div>
+        <button type="button" class="linkbtn" data-clear="work_location" hidden>Clear answer</button>
+      </fieldset>
+    </section>
+
+    <section class="card" aria-labelledby="h-support">
+      <h2 id="h-support">Support at work</h2>
+      <p class="sub">Think about your current or most recent workplace.</p>
+
+      <fieldset id="f-eap">
+        <legend><span class="qn" aria-hidden="true">4</span>Does your workplace offer an Employee Assistance Program?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="has_eap" value="Yes"> Yes</label>
+          <label class="opt"><input type="radio" name="has_eap" value="No"> No</label>
+          <label class="opt"><input type="radio" name="has_eap" value="Don't know"> Don't know</label>
+        </div>
+        <button type="button" class="linkbtn" data-clear="has_eap" hidden>Clear answer</button>
+      </fieldset>
+
+      <fieldset id="f-barriers" hidden>
+        <legend><span class="qn" aria-hidden="true">5</span>If yes, what gets in the way of using it? (tick any)</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="eap_barriers" value="I don't know how"> I don't know how</label>
+          <label class="opt"><input type="checkbox" name="eap_barriers" value="Worried about privacy"> Worried about privacy</label>
+          <label class="opt"><input type="checkbox" name="eap_barriers" value="Worried about how it looks"> Worried about how it looks</label>
+          <label class="opt"><input type="checkbox" name="eap_barriers" value="Too hard to access"> Too hard to access</label>
+          <label class="opt"><input type="checkbox" name="eap_barriers" value="It wasn't helpful"> It wasn't helpful</label>
+          <label class="opt"><input type="checkbox" name="eap_barriers" value="Nothing gets in the way"> Nothing gets in the way</label>
+        </div>
+      </fieldset>
+
+      <fieldset id="f-safe">
+        <legend><span class="qn" aria-hidden="true">6</span>I feel safe raising concerns about stress or wellbeing at work.</legend>
+        <div class="scale">
+          <label><input type="radio" name="feel_safe_raising_concerns" value="1"><span class="n" aria-hidden="true">1</span><span class="sr-only">1, strongly disagree</span></label>
+          <label><input type="radio" name="feel_safe_raising_concerns" value="2"><span class="n" aria-hidden="true">2</span><span class="sr-only">2, disagree</span></label>
+          <label><input type="radio" name="feel_safe_raising_concerns" value="3"><span class="n" aria-hidden="true">3</span><span class="sr-only">3, neither agree nor disagree</span></label>
+          <label><input type="radio" name="feel_safe_raising_concerns" value="4"><span class="n" aria-hidden="true">4</span><span class="sr-only">4, agree</span></label>
+          <label><input type="radio" name="feel_safe_raising_concerns" value="5"><span class="n" aria-hidden="true">5</span><span class="sr-only">5, strongly agree</span></label>
+        </div>
+        <div class="ends" aria-hidden="true"><span>Strongly disagree</span><span>Strongly agree</span></div>
+        <button type="button" class="linkbtn" data-clear="feel_safe_raising_concerns" hidden>Clear answer</button>
+      </fieldset>
+
+      <fieldset id="f-sup">
+        <legend><span class="qn" aria-hidden="true">7</span>My supervisor supports my wellbeing.</legend>
+        <div class="scale">
+          <label><input type="radio" name="supervisor_supports_wellbeing" value="1"><span class="n" aria-hidden="true">1</span><span class="sr-only">1, strongly disagree</span></label>
+          <label><input type="radio" name="supervisor_supports_wellbeing" value="2"><span class="n" aria-hidden="true">2</span><span class="sr-only">2, disagree</span></label>
+          <label><input type="radio" name="supervisor_supports_wellbeing" value="3"><span class="n" aria-hidden="true">3</span><span class="sr-only">3, neither agree nor disagree</span></label>
+          <label><input type="radio" name="supervisor_supports_wellbeing" value="4"><span class="n" aria-hidden="true">4</span><span class="sr-only">4, agree</span></label>
+          <label><input type="radio" name="supervisor_supports_wellbeing" value="5"><span class="n" aria-hidden="true">5</span><span class="sr-only">5, strongly agree</span></label>
+        </div>
+        <div class="ends" aria-hidden="true"><span>Strongly disagree</span><span>Strongly agree</span></div>
+        <button type="button" class="linkbtn" data-clear="supervisor_supports_wellbeing" hidden>Clear answer</button>
+      </fieldset>
+
+      <fieldset id="f-supports">
+        <legend><span class="qn" aria-hidden="true">8</span>Which supports does your workplace offer? (tick any)</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="supports_offered" value="Flexible scheduling"> Flexible scheduling</label>
+          <label class="opt"><input type="checkbox" name="supports_offered" value="Mental health training"> Mental health training</label>
+          <label class="opt"><input type="checkbox" name="supports_offered" value="Physical activity or wellness programs"> Physical activity or wellness programs</label>
+          <label class="opt"><input type="checkbox" name="supports_offered" value="Healthy food options"> Healthy food options</label>
+          <label class="opt"><input type="checkbox" name="supports_offered" value="Rest breaks that are respected"> Rest breaks that are respected</label>
+          <label class="opt"><input type="checkbox" name="supports_offered" value="None"> None</label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="card" aria-labelledby="h-words">
+      <h2 id="h-words">In your words</h2>
+      <p class="sub">Please don't include names of people or employers, or personal health details.</p>
+
+      <div style="margin-bottom:26px">
+        <label class="qlabel" for="whats_missing"><span class="qn" aria-hidden="true">9</span>What's missing?</label>
+        <textarea id="whats_missing" name="whats_missing" maxlength="1500" data-max="1500" aria-describedby="whats_missing-nudge whats_missing-count"></textarea>
+        <p class="nudge" id="whats_missing-nudge" aria-live="polite"></p>
+        <p class="count" id="whats_missing-count">0 / 1,500</p>
+      </div>
+
+      <div style="margin-bottom:26px">
+        <label class="qlabel" for="one_change"><span class="qn" aria-hidden="true">10</span>What one change would help most?</label>
+        <textarea id="one_change" name="one_change" maxlength="1500" data-max="1500" aria-describedby="one_change-nudge one_change-count"></textarea>
+        <p class="nudge" id="one_change-nudge" aria-live="polite"></p>
+        <p class="count" id="one_change-count">0 / 1,500</p>
+      </div>
+
+      <div style="margin-bottom:26px">
+        <label class="qlabel" for="experience"><span class="qn" aria-hidden="true">11</span>Share your experience</label>
+        <p class="hint" id="experience-hint">Optional. Please don't name people or employers.</p>
+        <textarea id="experience" name="experience" maxlength="3000" data-max="3000" aria-describedby="experience-hint experience-nudge experience-count"></textarea>
+        <p class="nudge" id="experience-nudge" aria-live="polite"></p>
+        <p class="count" id="experience-count">0 / 3,000</p>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-share">
+      <h2 id="h-share">Sharing and staying in touch</h2>
+      <p class="sub">Both of these are optional.</p>
+
+      <fieldset id="f-quote">
+        <legend><span class="qn" aria-hidden="true">12</span>May we quote your written answers anonymously in public findings?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="quote_consent" value="yes"> Yes, anonymously</label>
+          <label class="opt"><input type="radio" name="quote_consent" value="no" checked> No</label>
+        </div>
+      </fieldset>
+
+      <fieldset id="f-contact">
+        <legend><span class="qn" aria-hidden="true">13</span>Stay in touch (optional)</legend>
+        <label class="qlabel" for="contact-email" style="font-weight:400;font-size:16px">Email address</label>
+        <input type="email" id="contact-email" name="contact_email" inputmode="email" autocomplete="email" maxlength="254" aria-describedby="email-note email-err">
+        <p class="fielderr" id="email-err" hidden></p>
+        <label class="opt" style="margin-top:12px"><input type="checkbox" id="contact-consent" name="contact_consent"> Send me the results and updates from NeuroResilience Consulting.</label>
+        <p class="note" id="email-note">Your email is stored separately from your answers, so your responses stay anonymous.</p>
+      </fieldset>
+    </section>
+
+    <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" id="website" tabindex="-1" autocomplete="off"></label></div>
+
+    <div class="errs" id="errs" role="alert" tabindex="-1" hidden></div>
+    <button type="submit" class="btn" id="send">Submit anonymously</button>
+    <p class="fine" id="status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<section id="thanks" tabindex="-1" hidden>
+  <h2 id="thanks-h" tabindex="-1">Thank you.</h2>
+  <p id="thanks-p">Your answers have been received anonymously. We'll share what we learn as a public summary.</p>
+  <p id="thanks-contact" hidden>We couldn't save your email address for updates, but your answers were received. You're welcome to email us if you'd still like the results.</p>
+  <div id="thanks-crisis"></div>
+  <a class="home" href="https://www.neuroresilienceconsulting.com/" rel="noopener">Visit neuroresilienceconsulting.com</a>
+</section>
+</main>
+
+<footer>
+  <p>Results are reported only as combined findings, and any group with fewer than 10 answers is left out. This is a community survey, not a clinical assessment.</p>
+  <p>&copy; <span id="year">2026</span> NeuroResilience Consulting Inc. All rights reserved.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var SUPABASE_URL = 'https://fwravakcuoznizuariik.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3cmF2YWtjdW96bml6dWFyaWlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5MDIzMjcsImV4cCI6MjEwNzQ3ODMyN30.8TuBR3Pm-dVsKOjTkonEGLb8yoJuGiUbNmU1_W17BO0';   // public anon key: it can only insert rows
+
+  var form    = document.getElementById('survey-form');
+  var sendBtn = document.getElementById('send');
+  var errs    = document.getElementById('errs');
+  var status  = document.getElementById('status');
+  var emailEl = document.getElementById('contact-email');
+  var emailErr= document.getElementById('email-err');
+  var consent = document.getElementById('contact-consent');
+  var sending = false;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- helpers ---------- */
+  function radioVal(name){
+    var el = form.querySelector('input[name="'+name+'"]:checked');
+    return el ? el.value : null;
+  }
+  function checkVals(name){
+    return Array.prototype.map.call(form.querySelectorAll('input[name="'+name+'"]:checked'), function(e){ return e.value; });
+  }
+  function textVal(id){ return document.getElementById(id).value.trim(); }
+  function validEmail(s){ return s.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s); }
+  function fmt(n){ return n.toLocaleString('en-CA'); }
+
+  /* ---------- Q4 -> Q5 reveal ---------- */
+  var barriers = document.getElementById('f-barriers');
+  function syncEap(){
+    var yes = radioVal('has_eap') === 'Yes';
+    barriers.hidden = !yes;
+    if(!yes){
+      Array.prototype.forEach.call(barriers.querySelectorAll('input'), function(i){ i.checked = false; });
+    }
+  }
+
+  /* ---------- "Clear answer" buttons for optional radios ---------- */
+  function syncClear(){
+    Array.prototype.forEach.call(form.querySelectorAll('[data-clear]'), function(b){
+      b.hidden = !radioVal(b.getAttribute('data-clear'));
+    });
+  }
+  Array.prototype.forEach.call(form.querySelectorAll('[data-clear]'), function(b){
+    b.addEventListener('click', function(){
+      var name = b.getAttribute('data-clear');
+      var inputs = form.querySelectorAll('input[name="'+name+'"]');
+      Array.prototype.forEach.call(inputs, function(i){ i.checked = false; });
+      syncEap(); syncClear();
+      if(inputs[0]) inputs[0].focus();
+    });
+  });
+
+  /* ---------- "None" / "Nothing" are exclusive choices ---------- */
+  var EXCLUSIVE = { eap_barriers:'Nothing gets in the way', supports_offered:'None' };
+  form.addEventListener('change', function(e){
+    var t = e.target;
+    if(t && t.type === 'checkbox' && EXCLUSIVE[t.name]){
+      var ex = EXCLUSIVE[t.name];
+      var boxes = form.querySelectorAll('input[name="'+t.name+'"]');
+      if(t.value === ex){
+        if(t.checked){ Array.prototype.forEach.call(boxes, function(b){ if(b !== t) b.checked = false; }); }
+      } else if(t.checked){
+        Array.prototype.forEach.call(boxes, function(b){ if(b.value === ex) b.checked = false; });
+      }
+    }
+    if(t && t.name === 'has_eap') syncEap();
+    syncClear();
+  });
+
+  /* ---------- character counters + gentle privacy nudge ---------- */
+  var CONTACT_RE = /[^\s@]+@[^\s@]+\.[^\s@]+|(\+?1[\s.\-]?)?\(?\d{3}\)?[\s.\-]?\d{3}[\s.\-]?\d{4}/;
+  Array.prototype.forEach.call(form.querySelectorAll('textarea[data-max]'), function(ta){
+    var max = parseInt(ta.getAttribute('data-max'), 10);
+    var counter = document.getElementById(ta.id + '-count');
+    var nudge = document.getElementById(ta.id + '-nudge');
+    var timer = null;
+    function update(){
+      var n = ta.value.length;
+      counter.textContent = fmt(n) + ' / ' + fmt(max);
+      counter.className = 'count' + (n >= max * 0.9 ? ' near' : '');
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        nudge.textContent = CONTACT_RE.test(ta.value)
+          ? 'This looks like it may include an email address or phone number. To keep your answer anonymous, please remove it.'
+          : '';
+      }, 400);
+    }
+    ta.addEventListener('input', update);
+    update();
+  });
+
+  /* ---------- build the payload ---------- */
+  function collect(){
+    var d = {};
+    function put(k, v){
+      if(v === null || v === undefined || v === '') return;
+      if(Array.isArray(v) && v.length === 0) return;
+      d[k] = v;
+    }
+    put('sector', radioVal('sector'));
+    put('workplace_size', radioVal('workplace_size'));
+    put('work_location', radioVal('work_location'));
+    var eap = radioVal('has_eap');
+    put('has_eap', eap);
+    if(eap === 'Yes') put('eap_barriers', checkVals('eap_barriers'));
+    var s1 = radioVal('feel_safe_raising_concerns');
+    put('feel_safe_raising_concerns', s1 ? parseInt(s1, 10) : null);
+    var s2 = radioVal('supervisor_supports_wellbeing');
+    put('supervisor_supports_wellbeing', s2 ? parseInt(s2, 10) : null);
+    put('supports_offered', checkVals('supports_offered'));
+    put('whats_missing', textVal('whats_missing'));
+    put('one_change', textVal('one_change'));
+    put('experience', textVal('experience'));
+    var answered = Object.keys(d).length;
+    var hasText = !!(d.whats_missing || d.one_change || d.experience);
+    d.quote_consent = (radioVal('quote_consent') === 'yes') && hasText;
+    return { data: d, answered: answered };
+  }
+
+  /* ---------- UI state ---------- */
+  function showErrors(list, ref){
+    var html = '<strong>' + (list.length > 1 ? 'Please fix these before sending:' : 'Please check this before sending:') + '</strong><ul>';
+    list.forEach(function(m){ var li = document.createElement('li'); li.textContent = m; html += li.outerHTML; });
+    html += '</ul>' + (ref ? '<span class="ref">' + ref + '</span>' : '');
+    errs.innerHTML = html;
+    errs.hidden = false;
+    errs.focus();
+  }
+  function clearErrors(){
+    errs.hidden = true; errs.innerHTML = '';
+    emailErr.hidden = true; emailErr.textContent = '';
+    emailEl.removeAttribute('aria-invalid');
+  }
+  function setBusy(b){
+    sending = b;
+    sendBtn.disabled = b;
+    sendBtn.textContent = b ? 'Sending\u2026' : 'Submit anonymously';
+    sendBtn.setAttribute('aria-busy', b ? 'true' : 'false');
+    status.textContent = b ? 'Sending your answers\u2026' : '';
+  }
+  function showThanks(contactFailed){
+    document.getElementById('survey-view').hidden = true;
+    var crisis = document.getElementById('crisis').cloneNode(true);
+    crisis.removeAttribute('id');
+    var holder = document.getElementById('thanks-crisis');
+    holder.innerHTML = ''; holder.appendChild(crisis);
+    document.getElementById('thanks-contact').hidden = !contactFailed;
+    document.getElementById('thanks').hidden = false;
+    document.getElementById('thanks-h').focus();
+    if(window.scrollTo) window.scrollTo(0, 0);
+  }
+
+  /* ---------- network ---------- */
+  function post(table, body){
+    return fetch(SUPABASE_URL + '/rest/v1/' + table, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(body),
+      credentials: 'omit',
+      cache: 'no-store',
+      referrerPolicy: 'no-referrer'
+    }).then(function(res){
+      if(!res.ok){ var e = new Error('HTTP ' + res.status); e.status = res.status; throw e; }
+    });
+  }
+  function friendly(err){
+    if(err && err.status === 429) return ["We're getting a lot of responses right now. Please wait a minute and try again."];
+    if(err && err.status) return ["Something went wrong on our side, and your answers weren't saved. Please try again in a few minutes."];
+    return ["We couldn't reach the server. Check your connection and try again. Your answers are still on this page."];
+  }
+
+  /* ---------- submit ---------- */
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if(sending) return;
+    clearErrors();
+
+    // Spam trap: real people never see this field. Pretend it worked, send nothing.
+    if(document.getElementById('website').value){ showThanks(false); return; }
+
+    var c = collect();
+    var email = emailEl.value.trim().toLowerCase();
+    var wantsUpdates = consent.checked;
+    var problems = [];
+
+    if(c.answered === 0) problems.push('Please answer at least one question before submitting.');
+    if(email && !wantsUpdates){
+      problems.push('You entered an email address. Tick the box to get updates, or clear the email field. We only keep your email if you tick the box.');
+    }
+    if(wantsUpdates && !email) problems.push('Please enter your email address, or untick the box.');
+    if(wantsUpdates && email && !validEmail(email)){
+      problems.push("That email address doesn't look right. Please check it.");
+      emailEl.setAttribute('aria-invalid', 'true');
+      emailErr.textContent = "That email address doesn't look right.";
+      emailErr.hidden = false;
+    }
+    if(problems.length){ showErrors(problems); return; }
+
+    setBusy(true);
+    post('workplace_survey', c.data).then(function(){
+      if(wantsUpdates && email){
+        return post('survey_contacts', { email: email, consent_given: true })
+          .then(function(){ return true; }, function(){ return false; });
+      }
+      return true;
+    }).then(function(contactOk){
+      setBusy(false);
+      showThanks(contactOk === false);
+    }, function(err){
+      setBusy(false);
+      showErrors(friendly(err), err && err.status ? 'Reference: HTTP ' + err.status : '');
+    });
+  });
+
+  syncEap(); syncClear();
+})();
+</script>
+</body>
+</html>
