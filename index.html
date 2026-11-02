@@ -1734,8 +1734,14 @@ function updateUserBar() {
   const bar = document.getElementById('top-bar-right');
   if (!bar) return;
   if (currentUser) {
-    const initials = (currentUser.email || 'A')[0].toUpperCase();
-    bar.innerHTML = `<div class="user-bar"><div class="user-avatar">${initials}</div><div class="user-email">${currentUser.email}</div><span class="sync-badge" id="sync-badge" style="display:none">✓ Synced</span></div>`;
+    // Prefer the name Google provides; accounts made with email and password have none, so fall back to the email
+    const meta = currentUser.user_metadata || {};
+    const label = String(meta.full_name || meta.name || currentUser.email || 'Account').trim() || 'Account';
+    bar.innerHTML = '<div class="user-bar"><div class="user-avatar"></div><div class="user-email"></div><span class="sync-badge" id="sync-badge" style="display:none">✓ Synced</span></div>';
+    bar.querySelector('.user-avatar').textContent = label.charAt(0).toUpperCase();
+    const nameEl = bar.querySelector('.user-email');
+    nameEl.textContent = label;
+    nameEl.title = currentUser.email || '';
   } else {
     bar.innerHTML = '<button onclick="switchView(\'auth\')\" style="background:var(--gold);border:none;border-radius:7px;padding:6px 14px;color:var(--ink);font-size:11px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;letter-spacing:0.03em">Sign in →</button>';
   }
