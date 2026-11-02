@@ -1895,36 +1895,17 @@ async function generateProfile() {
   document.getElementById('ob-loading').style.display = 'block';
 
   setTimeout(async () => {
-    // Call protected backend for NeuroResilience calculations
-    let bmr, tdee, target, protein, fat, carbs, perf, windows;
-    try {
-      const calcRes = await fetch(AXIS_BACKEND, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          action: 'calculate',
-          wt, ht, age, sex, bf, sleep, lifestyle, goal, freq, exp, trainTime, duration, diet
-        })
-      });
-      if (calcRes.ok) {
-        const calcData = await calcRes.json();
-        bmr = calcData.bmr; tdee = calcData.tdee; target = calcData.target;
-        protein = calcData.protein; fat = calcData.fat; carbs = calcData.carbs;
-        perf = calcData.perf; windows = calcData.windows;
-      } else { throw new Error('Backend error'); }
-    } catch(backendErr) {
-      // Fallback to local calculation if backend unavailable
-      bmr = Math.round(calcBMR(wt, ht, age, sex));
-      const mult = getActivityMult(lifestyle, goal, freq);
-      tdee = Math.round(bmr * mult);
-      const adj = getGoalAdj(goal);
-      target = Math.round(tdee + adj);
-      protein = getProtein(wt, bf, goal);
-      fat = Math.round(target * 0.25 / 9);
-      carbs = Math.round((target - (protein * 4) - (fat * 9)) / 4);
-      perf = calcPerformance(goal, exp, sleep, bmr, tdee, target, bf, freq, lifestyle);
-      windows = null;
-    }
+    // The calculations run here in the app, so personal details are not sent anywhere for this step
+    let bmr, tdee, target, protein, fat, carbs, perf;
+    bmr = Math.round(calcBMR(wt, ht, age, sex));
+    const mult = getActivityMult(lifestyle, goal, freq);
+    tdee = Math.round(bmr * mult);
+    const adj = getGoalAdj(goal);
+    target = Math.round(tdee + adj);
+    protein = getProtein(wt, bf, goal);
+    fat = Math.round(target * 0.25 / 9);
+    carbs = Math.round((target - (protein * 4) - (fat * 9)) / 4);
+    perf = calcPerformance(goal, exp, sleep, bmr, tdee, target, bf, freq, lifestyle);
 
     profile = {
       age, sex, wt, ht, bf, sleep, lifestyle,
@@ -2597,7 +2578,11 @@ async function analyseViaNetlify() {
       body: JSON.stringify({ action: "scan_food", imageB64: b64ToSend, goal: (typeof profile !== "undefined" && profile) ? profile.goal : "general" })
     });
   } catch (e) { throw { code: "unreachable" }; }
-  if (!res.ok) throw { code: "http", status: res.status };
+  if (!res.ok) {
+    var eb = null;
+    try { eb = await res.json(); } catch (e) {}
+    throw { code: "http", status: res.status, message: (res.status === 422 && eb && eb.error) ? String(eb.error) : "" };
+  }
   var a;
   try { a = await res.json(); } catch (e) { throw { code: "http", status: res.status }; }
   var macros = a.macros || { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 };
@@ -2673,6 +2658,7 @@ async function analyseFoodImage() {
   if (!result) {
     try { result = await analyseViaNetlify(); }
     catch (e) {
+      if (e && e.status === 422 && e.message) { fail(e.message); return; }
       var tail = (e && e.status) ? " (error " + e.status + ")" : "";
       fail("Photo analysis is not available from this address right now" + tail + ". You can still use Scan a barcode on packaged foods.");
       return;
