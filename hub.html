@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Partner hub | Axis</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://fwravakcuoznizuariik.supabase.co; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; base-uri 'none'; form-action 'none'">
+<style>
+  :root { --bg:#0a0d14; --card:#121726; --field:#0a0d14; --line:#252c44; --text:#f7f5ef; --soft:#c9cfe4; --muted:#8b91b0; --gold:#c9a84c; --teal:#2ec4b6; --red:#f87171; --ink:#0a0d14; color-scheme: dark; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f6f4ee; --card:#ffffff; --field:#faf8f2; --line:#dedacd; --text:#14182a; --soft:#383e57; --muted:#5c6280; --gold:#8a6d12; --teal:#0b7d73; --red:#b42318; --ink:#ffffff; color-scheme: light; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.55; }
+  body { padding: max(20px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom)); }
+  main { max-width: 520px; margin: 0 auto; }
+  .brand { text-align: center; margin: 6px 0 20px; }
+  .word { font-family: Georgia, "Times New Roman", serif; font-weight: 600; font-size: 32px; letter-spacing: .28em; padding-left: .28em; line-height: 1; margin: 0; }
+  .tag { font-size: 12px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin: 8px 0 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 18px; margin-bottom: 16px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; font-size: 24px; margin: 0 0 2px; overflow-wrap: anywhere; }
+  h2 { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 14px; overflow-wrap: anywhere; }
+  p { margin: 0 0 12px; color: var(--soft); font-size: 14.5px; }
+  label { display: block; font-weight: 600; font-size: 14px; margin: 14px 0 6px; }
+  .hint { display: block; font-weight: 400; font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+  input[type=text], input[type=date], select, textarea { width: 100%; min-height: 48px; padding: 11px 12px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--field); color: var(--text); font: 16px system-ui, sans-serif; }
+  textarea { min-height: 140px; resize: vertical; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+  [aria-invalid=true] { border-color: var(--red); }
+  .count { font-size: 12px; color: var(--muted); text-align: right; margin-top: 3px; }
+  .err { color: var(--red); font-size: 13px; margin-top: 4px; min-height: 1px; }
+  .check { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; font-weight: 400; font-size: 13.5px; color: var(--soft); }
+  .check input { width: 22px; height: 22px; margin: 1px 0 0; flex: 0 0 22px; }
+  button.go { width: 100%; min-height: 54px; margin-top: 18px; border: 0; border-radius: 12px; background: var(--gold); color: var(--ink); font: 700 17px system-ui, sans-serif; cursor: pointer; }
+  button.go[disabled] { opacity: .6; cursor: progress; }
+  #msg { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; font-size: 14.5px; display: none; }
+  #msg.show { display: block; }
+  #msg.ok { background: rgba(46,196,182,.12); border: 1px solid var(--teal); color: var(--text); }
+  #msg.bad { background: rgba(248,113,113,.10); border: 1px solid var(--red); color: var(--text); }
+  ul.recent { list-style: none; margin: 0; padding: 0; }
+  ul.recent li { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  ul.recent li:first-child { border-top: 0; }
+  ul.recent .t { overflow-wrap: anywhere; }
+  .st { flex: 0 0 auto; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); align-self: flex-start; }
+  .st.live { color: var(--teal); border-color: var(--teal); } .st.waiting { color: var(--gold); border-color: var(--gold); }
+  input[type=file] { width: 100%; min-height: 48px; padding: 8px; border: 1.5px dashed var(--line); border-radius: 12px; background: var(--field); color: var(--soft); font: 15px system-ui, sans-serif; }
+  input[type=file]::file-selector-button { min-height: 36px; margin-right: 10px; padding: 0 14px; border: 0; border-radius: 8px; background: var(--gold); color: var(--ink); font: 700 14px system-ui, sans-serif; cursor: pointer; }
+  input[type=file]:disabled { opacity: .55; }
+  #photo-box { margin-top: 10px; }
+  #photo-img { display: block; width: 100%; max-height: 260px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); background: var(--field); }
+  button.plain { min-height: 44px; margin-top: 8px; padding: 0 16px; border: 1.5px solid var(--line); border-radius: 12px; background: transparent; color: var(--soft); font: 600 14px system-ui, sans-serif; cursor: pointer; }
+  .notes { font-size: 12.5px; color: var(--muted); }
+  .notes li { margin-bottom: 6px; }
+  footer { text-align: center; font-size: 12px; color: var(--muted); margin-top: 18px; }
+  footer a, .card a { color: var(--teal); }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand"><p class="word">AXIS</p><p class="tag">Partner hub</p></div>
+
+  <section class="card" id="status-card" aria-live="polite"><p id="loading">Checking your link…</p></section>
+
+  <section class="card hidden" id="form-card" aria-labelledby="form-h">
+    <h2 id="form-h">Send a post to Axis</h2>
+    <p id="allowance"></p>
+    <form id="f" novalidate autocomplete="off">
+      <label for="cat">Where should it appear?</label>
+      <select id="cat">
+        <option value="local">Local (available or on offer)</option>
+        <option value="recipes">Recipes (one to share)</option>
+        <option value="meals">Meals (a meal or plate idea)</option>
+        <option value="food">Food (a food tip)</option>
+      </select>
+      <label for="title">Title <span class="hint">3 to 90 characters</span></label>
+      <input type="text" id="title" maxlength="90" aria-describedby="title-c title-e">
+      <div class="count" id="title-c" aria-hidden="true"></div><div class="err" id="title-e"></div>
+      <label for="body">Text <span class="hint">10 to 600 characters. Please include main ingredients and common allergens. No web links.</span></label>
+      <textarea id="body" maxlength="600" aria-describedby="body-c body-e"></textarea>
+      <div class="count" id="body-c" aria-hidden="true"></div><div class="err" id="body-e"></div>
+      <label for="until">Available until <span class="hint">Optional. Good for a special or stock that ends. Up to 90 days from today.</span></label>
+      <input type="date" id="until" aria-describedby="until-e"><div class="err" id="until-e"></div>
+      <div id="photo-wrap">
+        <label for="photo">Photo <span class="hint">Optional. We tidy it up first and remove any hidden location data. <span id="photo-left"></span></span></label>
+        <input type="file" id="photo" accept="image/*" aria-describedby="photo-e">
+        <div id="photo-box" class="hidden"><img id="photo-img" alt="Preview of the photo you chose"><button type="button" class="plain" id="photo-rm">Remove photo</button></div>
+        <div class="err" id="photo-e"></div>
+      </div>
+      <label class="check" for="ok"><input type="checkbox" id="ok" aria-describedby="ok-e"><span>I confirm the details are accurate, including ingredients and allergens, and that I am allowed to share everything in this post.</span></label>
+      <div class="err" id="ok-e"></div>
+      <button type="submit" class="go" id="send">Send for review</button>
+      <div id="msg" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section class="card hidden" id="recent-card"><h2>Your recent posts</h2><ul class="recent" id="recent"></ul></section>
+
+  <section class="card hidden" id="notes-card">
+    <h2>Good to know</h2>
+    <ul class="notes">
+      <li>Every post is reviewed before it appears. We may edit it for length or clarity, or decline it.</li>
+      <li>Your name and website show on each post, with a link to your site.</li>
+      <li>One photo per post. Photos are resized and cleaned of hidden data (like location) before they are stored. Trouble with a photo? Email it to <a id="photo-mail" href="#">us</a> with the post title.</li>
+      <li>You can ask us to remove any post at any time.</li>
+    </ul>
+  </section>
+
+  <footer>Questions? <a id="help" href="#">Email us</a><br>© <span id="yr"></span> NeuroResilience Consulting Inc.</footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var CONFIG = { url: 'https://fwravakcuoznizuariik.supabase.co', key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3cmF2YWtjdW96bml6dWFyaWlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5MDIzMjcsImV4cCI6MjEwNzQ3ODMyN30.8TuBR3Pm-dVsKOjTkonEGLb8yoJuGiUbNmU1_W17BO0', email: 'neuroresiliencefitness@gmail.com' };
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = (location.hash || '').replace(/^#/, '').trim();
+  var busy = false;
+
+  $('yr').textContent = new Date().getFullYear();
+  $('help').href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Axis partner hub question');
+  $('photo-mail').href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Photo for my Axis post');
+
+  function show(id, on) { $(id).classList.toggle('hidden', !on); }
+  function status(html) { var c = $('status-card'); c.textContent = ''; var p = document.createElement('p'); p.textContent = html; c.appendChild(p); show('status-card', true); }
+  function rpc(name, args) {
+    return fetch(CONFIG.url + '/rest/v1/rpc/' + name, { method: 'POST', cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer',
+      headers: { apikey: CONFIG.key, Authorization: 'Bearer ' + CONFIG.key, 'Content-Type': 'application/json' }, body: JSON.stringify(args) })
+      .then(function (r) { if (!r.ok) throw new Error('http'); return r.json(); });
+  }
+
+  // ---- messages ----
+  var REASON = {
+    inactive: 'Posting is switched off for your hub at the moment. Please email us.',
+    no_permission: 'We are still setting up your permission, so posting is not open yet. Please email us.',
+    permission_expired: 'Your permission period has ended, so posting is paused. Please email us to renew it.'
+  };
+  var ERR_BAD_KEY = 'This link is not valid any more. Please email us for a new one.';
+  var ERR = {
+    bad_key: 'This link is not valid any more. Please email us for a new one.',
+    not_allowed: 'Posting is not open for your hub right now. Please email us.',
+    bad_category: 'Please choose where the post should appear.',
+    bad_title: 'The title needs 3 to 90 characters.',
+    bad_body: 'The text needs 10 to 600 characters.',
+    bad_characters: 'Please remove the < and > symbols.',
+    link_not_allowed: 'Please take out web links. We show your website on the post for you.',
+    bad_date: 'Please pick an end date from today up to 90 days away, or leave it empty.',
+    duplicate: 'You already sent a post with this title in the last week.',
+    daily_limit: 'You have reached today\u2019s limit of 10 posts. Please try again tomorrow.',
+    waiting_limit: 'You have 25 posts waiting for review. We will go through them soon, then you can send more.',
+    bad_image: 'There was a problem with the photo. Please try sending again, or remove the photo.'
+  };
+  var PHOTO_ERR = {
+    photo_limit: 'You have reached today\u2019s photo limit (5). Remove the photo to send the post without one, or try again tomorrow.',
+    too_big: 'That photo is too big. Please choose a smaller one.',
+    bad_type: 'We could not use that photo. Please choose a JPEG or PNG.',
+    bad_image: 'We could not use that photo. Please try a different one.',
+    bad_key: ERR_BAD_KEY,
+    not_allowed: 'Posting is not open for your hub right now. Please email us.',
+    server_error: 'The photo did not upload. Please try again in a moment.'
+  };
+  var STATUS = { waiting: 'Waiting for review', live: 'Live', ended: 'Ended' };
+
+  function say(text, kind) { var m = $('msg'); m.textContent = text; m.className = 'show ' + (kind || ''); }
+  function clearErrors() { ['title', 'body', 'until', 'ok'].forEach(function (k) { $(k + '-e').textContent = ''; var f = $(k); f.removeAttribute('aria-invalid'); }); }
+  function fail(k, text) { $(k + '-e').textContent = text; $(k).setAttribute('aria-invalid', 'true'); }
+
+  // ---- counters and date limits ----
+  function counters() { $('title-c').textContent = $('title').value.length + ' / 90'; $('body-c').textContent = $('body').value.length + ' / 600'; }
+  function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  var today = new Date(), max = new Date(today.getTime() + 90 * 86400000);
+  $('until').min = iso(today); $('until').max = iso(max);
+  $('title').addEventListener('input', counters); $('body').addEventListener('input', counters); counters();
+
+  // ---- the photo: chosen, tidied in the browser (resized, converted to JPEG, which drops hidden data), previewed ----
+  var photoBlob = null, photoUrl = '', uploaded = '', MAX_SIDE = 1600, MAX_OUT = 3.5 * 1024 * 1024;
+  function setPhoto(blob) {
+    if (photoUrl) { URL.revokeObjectURL(photoUrl); photoUrl = ''; }
+    photoBlob = blob || null; uploaded = '';
+    if (photoBlob) { photoUrl = URL.createObjectURL(photoBlob); $('photo-img').src = photoUrl; show('photo-box', true); }
+    else { $('photo-img').removeAttribute('src'); show('photo-box', false); $('photo').value = ''; }
+  }
+  function viaImage(file) {
+    return new Promise(function (res, rej) { var u = URL.createObjectURL(file), im = new Image(); im.onload = function () { URL.revokeObjectURL(u); res(im); }; im.onerror = function () { URL.revokeObjectURL(u); rej(new Error('decode')); }; im.src = u; });
+  }
+  function decode(file) {
+    if (window.createImageBitmap) return createImageBitmap(file, { imageOrientation: 'from-image' }).catch(function () { return viaImage(file); });
+    return viaImage(file);
+  }
+  function toJpeg(src) {
+    var w = src.width || src.naturalWidth, h = src.height || src.naturalHeight;
+    var k = Math.min(1, MAX_SIDE / Math.max(w, h)), cw = Math.round(w * k), ch = Math.round(h * k);
+    if (Math.min(cw, ch) < 200) return Promise.reject(new Error('small'));
+    var c = document.createElement('canvas'); c.width = cw; c.height = ch;
+    var x = c.getContext('2d'); x.fillStyle = '#ffffff'; x.fillRect(0, 0, cw, ch); x.drawImage(src, 0, 0, cw, ch);
+    return new Promise(function (res, rej) {
+      c.toBlob(function (b) {
+        if (!b) return rej(new Error('encode'));
+        if (b.size <= MAX_OUT) return res(b);
+        c.toBlob(function (b2) { if (b2 && b2.size <= MAX_OUT) res(b2); else rej(new Error('big')); }, 'image/jpeg', 0.6);
+      }, 'image/jpeg', 0.85);
+    });
+  }
+  function photoFail(text) { setPhoto(null); $('photo-e').textContent = text; $('photo').setAttribute('aria-invalid', 'true'); }
+  $('photo').addEventListener('change', function () {
+    var f = this.files && this.files[0]; $('photo-e').textContent = ''; $('photo').removeAttribute('aria-invalid');
+    if (!f) { setPhoto(null); return; }
+    if (!/^image\//.test(f.type)) { photoFail('That file does not look like a photo.'); return; }
+    if (f.size > 25 * 1024 * 1024) { photoFail('That photo is very large. Please choose one under 25 MB.'); return; }
+    say('Getting your photo ready…', '');
+    decode(f).then(toJpeg).then(function (blob) { setPhoto(blob); var m = $('msg'); m.className = ''; m.textContent = ''; })
+      .catch(function (err) { var m = $('msg'); m.className = ''; m.textContent = ''; photoFail(err && err.message === 'small' ? 'That photo is too small. Please choose one that is at least 200 pixels wide.' : 'We could not read that photo. Please choose a JPEG or PNG.'); });
+  });
+  $('photo-rm').addEventListener('click', function () { setPhoto(null); $('photo-e').textContent = ''; $('photo').focus(); });
+  function uploadPhoto() {
+    return fetch(CONFIG.url + '/functions/v1/hub-photo', { method: 'POST', cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer',
+      headers: { 'x-hub-key': KEY, 'Content-Type': 'image/jpeg', apikey: CONFIG.key, Authorization: 'Bearer ' + CONFIG.key }, body: photoBlob })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (r.ok && j && j.ok && typeof j.path === 'string') return j.path; throw { code: (j && j.error) || 'server_error' }; }); });
+  }
+
+  // ---- showing what we know about the hub ----
+  function render(info) {
+    show('status-card', false);
+    var c = $('status-card'); c.textContent = '';
+    var h = document.createElement('h1'); h.textContent = info.hub; var s = document.createElement('p'); s.className = 'sub'; s.textContent = info.region || ''; 
+    c.appendChild(h); if (info.region) c.appendChild(s);
+    if (info.reason) { var p = document.createElement('p'); p.textContent = REASON[info.reason] || 'Posting is not open for your hub right now. Please email us.'; c.appendChild(p); }
+    show('status-card', true); show('form-card', !info.reason); show('notes-card', true);
+    var left = Math.max(0, (info.daily_limit || 10) - (info.submitted_today || 0));
+    $('allowance').textContent = 'You can send ' + left + ' more post' + (left === 1 ? '' : 's') + ' today. ' + (info.waiting ? info.waiting + ' waiting for review.' : 'None are waiting for review.');
+    var pl = info.photo_limit;
+    if (typeof pl === 'number') {
+      var pleft = Math.max(0, pl - (info.photos_today || 0)); show('photo-wrap', true);
+      $('photo-left').textContent = pleft + ' photo' + (pleft === 1 ? '' : 's') + ' left today.'; $('photo').disabled = pleft === 0; if (pleft === 0) setPhoto(null);
+    } else { show('photo-wrap', false); setPhoto(null); }
+    var list = $('recent'); list.textContent = '';
+    (Array.isArray(info.recent) ? info.recent : []).forEach(function (r) {
+      var li = document.createElement('li'), t = document.createElement('span'), st = document.createElement('span');
+      t.className = 't'; t.textContent = String(r.title || ''); st.className = 'st ' + (STATUS[r.status] ? r.status : ''); st.textContent = STATUS[r.status] || '';
+      li.appendChild(t); li.appendChild(st); list.appendChild(li);
+    });
+    show('recent-card', list.children.length > 0);
+  }
+  function load() {
+    return rpc('hub_portal_info', { p_key: KEY }).then(function (info) {
+      if (!info || typeof info !== 'object' || !info.hub) { status(ERR.bad_key); show('form-card', false); return; }
+      render(info);
+    }).catch(function () { status('We could not reach the server. Please check your connection and reload this page.'); });
+  }
+
+  // ---- sending ----
+  function check() {
+    clearErrors(); var bad = [];
+    var t = $('title').value.replace(/\s+/g, ' ').trim(), b = $('body').value.replace(/\s+/g, ' ').trim(), until = $('until').value;
+    if (t.length < 3 || t.length > 90) { fail('title', ERR.bad_title); bad.push('title'); }
+    else if (/[<>]/.test(t)) { fail('title', ERR.bad_characters); bad.push('title'); }
+    else if (/(https?:|www\.)/i.test(t)) { fail('title', ERR.link_not_allowed); bad.push('title'); }
+    if (b.length < 10 || b.length > 600) { fail('body', ERR.bad_body); bad.push('body'); }
+    else if (/[<>]/.test(b)) { fail('body', ERR.bad_characters); bad.push('body'); }
+    else if (/(https?:|www\.)/i.test(b)) { fail('body', ERR.link_not_allowed); bad.push('body'); }
+    if (until && (until < iso(today) || until > iso(max))) { fail('until', ERR.bad_date); bad.push('until'); }
+    if (!$('ok').checked) { fail('ok', 'Please tick the box to confirm.'); bad.push('ok'); }
+    if (bad.length) { $(bad[0]).focus(); return null; }
+    return { p_key: KEY, p_category: $('cat').value, p_title: t, p_body: b, p_until: until || null };
+  }
+  $('f').addEventListener('submit', function (e) {
+    e.preventDefault(); if (busy) return;
+    var args = check(); if (!args) return;
+    busy = true; $('send').disabled = true;
+    var needUpload = !!photoBlob && !uploaded;
+    say(needUpload ? 'Uploading your photo…' : 'Sending…', '');
+    (needUpload ? uploadPhoto() : Promise.resolve(uploaded)).then(function (path) {
+      if (path) { uploaded = path; args.p_image = path; }          // text-only posts send no photo field at all
+      say('Sending…', '');
+      return rpc('submit_hub_post', args).then(function (res) {
+        if (res === 'ok') {
+          say('Thank you! Your post is waiting for review. We will publish it if it fits.', 'ok');
+          $('title').value = ''; $('body').value = ''; $('until').value = ''; $('ok').checked = false; setPhoto(null); counters(); return load();
+        }
+        say(ERR[res] || 'Something went wrong. Please try again, or email us.', 'bad');
+        if (res === 'bad_image') uploaded = '';                      // the photo could not be attached, so upload it again next time
+        if (res === 'bad_key' || res === 'not_allowed') return load();
+      });
+    }).catch(function (err) {
+      if (err && err.code) { say(PHOTO_ERR[err.code] || PHOTO_ERR.server_error, 'bad'); if (err.code === 'bad_key' || err.code === 'not_allowed') return load(); return; }
+      say('We could not send that. Please check your connection and try again. Your text is still here.', 'bad');
+    }).then(function () { busy = false; $('send').disabled = false; });
+  });
+
+  // ---- start ----
+  if (!/^hk_[0-9a-f]{40}$/.test(KEY)) { status('This page needs the private link we sent you. Please use that link, or email us for a new one.'); return; }
+  load();
+})();
+</script>
+</body>
+</html>
