@@ -764,6 +764,9 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
 .axf-end b{display:block;color:var(--white);font-family:var(--ff-serif);font-size:20px;margin-bottom:4px}
 .axf-empty{text-align:center;color:var(--muted);font-size:14px;line-height:1.6;padding:40px 12px}
 .axf-foot{max-width:520px;margin:18px auto 0;text-align:center;font-size:11px;line-height:1.6;color:var(--muted)}
+.axf-ig{margin-left:auto;flex:0 0 auto;min-height:44px;padding:0 14px;border:1.5px solid var(--gold);border-radius:12px;color:var(--gold);font:700 13px Inter,sans-serif;display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap}
+.axf-follow{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin-top:12px;padding:0 18px;border:1.5px solid var(--gold);border-radius:12px;color:var(--gold);font:700 14px Inter,sans-serif;text-decoration:none}
+.axf-ig:focus-visible,.axf-follow:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 #axf-toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-bot));transform:translateX(-50%);background:var(--white);color:var(--ink);padding:10px 16px;border-radius:999px;font:600 13px Inter,sans-serif;opacity:0;pointer-events:none;transition:opacity .2s;z-index:810;max-width:86vw;text-align:center}
 #axf-toast.on{opacity:1}
 @media (prefers-reduced-motion:reduce){#axf-toast{transition:none}}
@@ -4616,6 +4619,7 @@ async function bcOpen() {
   var ORDER = ['fitness', 'food', 'recipes', 'meals', 'local', 'mind'];
   var FILTERS = [['all', 'All'], ['fitness', 'Fitness'], ['food', 'Food'], ['recipes', 'Recipes'], ['meals', 'Meals'], ['local', 'Local'], ['mind', 'Mind & Rest'], ['saved', 'Saved']];
   var PARTNER_EMAIL = 'neuroresiliencefitness@gmail.com';
+  var IG_HANDLE = 'neuroresilience_fitness', IG_URL = 'https://www.instagram.com/neuroresilience_fitness/';
   var SHARE_URL = 'https://app.neuroresilienceconsulting.com';
 
   // ---------- starter posts (general education, not medical advice) ----------
@@ -4859,7 +4863,8 @@ async function bcOpen() {
       el.moreBtn = mk('button', 'axf-more', 'Show more'); el.moreBtn.type = 'button'; el.moreBtn.addEventListener('click', more); el.list.appendChild(el.moreBtn);
       if (typeof IntersectionObserver === 'function') { io = io || new IntersectionObserver(function (es) { if (es.some(function (x) { return x.isIntersecting; }) && el.moreBtn) more(); }, { root: el.scroll, rootMargin: '300px' }); io.observe(el.moreBtn); }
     } else if (current.length) {
-      var e = mk('div', 'axf-end'); e.appendChild(mk('b', '', 'You\u2019re all caught up')); e.appendChild(document.createTextNode('New posts are added regularly. The order refreshes every day.')); el.list.appendChild(e);
+      var e = mk('div', 'axf-end'); e.appendChild(mk('b', '', 'You\u2019re all caught up')); e.appendChild(document.createTextNode('New posts are added regularly. The order refreshes every day.'));
+      var fl = mk('a', 'axf-follow', 'Follow @' + IG_HANDLE + ' on Instagram'); fl.href = IG_URL; fl.target = '_blank'; fl.rel = 'noopener noreferrer'; e.appendChild(fl); el.list.appendChild(e);
     }
   }
   function draw() {
@@ -4907,7 +4912,7 @@ async function bcOpen() {
     if (document.getElementById('axf')) return;
     var root = mk('div'); root.id = 'axf'; root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); root.setAttribute('aria-label', 'Axis Feed');
     var head = mk('div', 'axf-head'); var x = mk('button', 'axf-x', '\u2715'); x.type = 'button'; x.setAttribute('aria-label', 'Close the feed'); x.addEventListener('click', function () { close(); });
-    var tt = mk('div'); tt.appendChild(mk('h2', 'axf-ttl', 'Axis Feed')); tt.appendChild(mk('p', 'axf-sub', 'Fitness \u00B7 Food \u00B7 Local \u00B7 Mind & Rest')); head.appendChild(x); head.appendChild(tt);
+    var tt = mk('div'); tt.appendChild(mk('h2', 'axf-ttl', 'Axis Feed')); tt.appendChild(mk('p', 'axf-sub', 'Fitness \u00B7 Food \u00B7 Local \u00B7 Mind & Rest')); var ig = mk('a', 'axf-ig', 'Follow us'); ig.href = IG_URL; ig.target = '_blank'; ig.rel = 'noopener noreferrer'; ig.setAttribute('aria-label', 'Follow @' + IG_HANDLE + ' on Instagram (opens in a new tab)'); head.appendChild(x); head.appendChild(tt); head.appendChild(ig);
     var chips = mk('div', 'axf-chips'); chips.setAttribute('role', 'radiogroup'); chips.setAttribute('aria-label', 'Choose a topic');
     FILTERS.forEach(function (f) { var c = mk('button', 'axf-chip', f[1]); c.type = 'button'; c.setAttribute('role', 'radio'); c.setAttribute('data-f', f[0]); c.setAttribute('aria-checked', String(f[0] === 'all')); c.addEventListener('click', function () { setFilter(f[0]); }); chips.appendChild(c); });
     var scroll = mk('div', 'axf-scroll'); var list = mk('div', 'axf-list'); var foot = mk('p', 'axf-foot', 'Educational content from NeuroResilience Consulting Inc. It is general information, not medical advice.');
