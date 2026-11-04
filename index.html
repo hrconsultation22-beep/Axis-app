@@ -717,6 +717,62 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
 .axis-head{text-align:center;margin:0}
 .axis-word{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,11vw,56px);letter-spacing:.28em;padding-left:.28em;margin:0;line-height:1;color:var(--white)}
 .axis-tag{font-size:15px;letter-spacing:.04em;color:var(--soft);margin:10px 0 0;line-height:1.4}
+
+.food-pointer{font-size:12.5px;color:var(--muted);margin:0 0 16px;line-height:1.6}
+.food-pointer a{color:var(--teal);text-decoration:underline;text-underline-offset:3px}
+
+/* ── AXIS FEED (opened from the logo) ── */
+.top-bar-logo{position:relative}
+.top-bar .brand-mark{cursor:pointer;border-radius:8px;padding:6px;margin:-6px;box-sizing:content-box}
+.top-bar .brand-mark:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.axf-dot{position:absolute;left:-3px;top:-3px;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 2px var(--ink);pointer-events:none}
+#axf{position:fixed;inset:0;z-index:800;background:var(--ink);color:var(--white);display:none;flex-direction:column;font-family:Inter,system-ui,sans-serif}
+#axf.open{display:flex}
+.axf-head{display:flex;align-items:center;gap:10px;padding:calc(10px + var(--safe-top)) 14px 8px;border-bottom:1px solid var(--border);background:var(--ink)}
+.axf-x{width:44px;height:44px;flex:0 0 44px;border-radius:12px;border:1px solid var(--border);background:var(--ink2);color:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.axf-ttl{font-family:var(--ff-serif);font-weight:600;font-size:24px;line-height:1.1;margin:0}
+.axf-sub{font-size:11px;color:var(--muted);letter-spacing:.06em;margin:2px 0 0}
+.axf-chips{display:flex;gap:8px;padding:10px 14px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--border);background:var(--ink)}
+.axf-chips::-webkit-scrollbar{display:none}
+.axf-chip{flex:0 0 auto;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--border);background:transparent;color:var(--soft);font:600 14px Inter,sans-serif;cursor:pointer;white-space:nowrap}
+.axf-chip[aria-checked=true]{border-color:var(--gold);background:var(--goldp);color:var(--gold)}
+.axf-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:14px 14px calc(30px + var(--safe-bot))}
+.axf-list{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.axf-banner-crisis{border:1.5px solid var(--red);background:var(--redp);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5;color:var(--white)}
+.axf-banner-crisis a{color:var(--red);font-weight:700}
+.axf-card{border:1px solid var(--border);border-radius:18px;background:var(--ink2);overflow:hidden}
+.axf-band{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(135deg,var(--s),var(--ink3));border-bottom:1px solid var(--border)}
+.axf-pill{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
+.axf-big{font-size:30px;line-height:1}
+.axf-img{display:block;width:100%;max-height:260px;object-fit:cover;background:var(--ink3)}
+.axf-body{padding:16px 16px 12px}
+.axf-title{font-family:var(--ff-serif);font-weight:600;font-size:23px;line-height:1.2;margin:0 0 8px;overflow-wrap:anywhere}
+.axf-text{font-size:15px;line-height:1.65;color:var(--soft);margin:0 0 12px;overflow-wrap:anywhere}
+.axf-why{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 10px;overflow-wrap:anywhere}
+.axf-why b,.axf-try b{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+.axf-why b{color:var(--muted)}
+.axf-try{margin:0 0 10px;padding:10px 12px;border-left:3px solid var(--c);background:var(--s);border-radius:0 10px 10px 0;font-size:14px;line-height:1.5;color:var(--white);overflow-wrap:anywhere}
+.axf-try b{color:var(--c)}
+.axf-note{font-size:11px;color:var(--muted);margin:0 0 8px}
+.axf-acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-top:6px}
+.axf-ib{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--soft);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.axf-ib[aria-pressed=true]{border-color:var(--c);color:var(--c);background:var(--s)}
+.axf-go{min-height:44px;padding:0 16px;border-radius:12px;border:1.5px solid var(--c);background:transparent;color:var(--c);font:700 14px Inter,sans-serif;cursor:pointer;margin-left:auto;text-decoration:none;display:inline-flex;align-items:center}
+.axf-ib:focus-visible,.axf-go:focus-visible,.axf-chip:focus-visible,.axf-x:focus-visible,.axf-more:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.axf-more{min-height:48px;border-radius:12px;border:1.5px solid var(--border);background:var(--ink2);color:var(--soft);font:600 15px Inter,sans-serif;cursor:pointer}
+.axf-end{text-align:center;color:var(--muted);font-size:13px;line-height:1.6;padding:18px 8px}
+.axf-end b{display:block;color:var(--white);font-family:var(--ff-serif);font-size:20px;margin-bottom:4px}
+.axf-empty{text-align:center;color:var(--muted);font-size:14px;line-height:1.6;padding:40px 12px}
+.axf-foot{max-width:520px;margin:18px auto 0;text-align:center;font-size:11px;line-height:1.6;color:var(--muted)}
+#axf-toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-bot));transform:translateX(-50%);background:var(--white);color:var(--ink);padding:10px 16px;border-radius:999px;font:600 13px Inter,sans-serif;opacity:0;pointer-events:none;transition:opacity .2s;z-index:810;max-width:86vw;text-align:center}
+#axf-toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){#axf-toast{transition:none}}
+
+.axf-hub{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c);margin:0 0 6px;overflow-wrap:anywhere}
+.axf-until{font-size:12px;font-weight:600;color:var(--c);margin:-4px 0 10px}
+.axf-cta{border:1.5px dashed var(--purp);background:var(--purpp);border-radius:14px;padding:14px;font-size:14px;line-height:1.55;color:var(--soft)}
+.axf-cta b{display:block;color:var(--white);font-family:var(--ff-serif);font-size:19px;margin-bottom:2px}
+.axf-cta a{color:var(--purp);font-weight:700}
 </style>
 </head>
 <body>
@@ -1104,7 +1160,7 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
             <div class="chip" onclick="toggle(this,'t')">Steadier mood</div>
             <div class="chip" onclick="toggle(this,'t')">More energy</div>
           </div></div>
-        <label class="ob-check"><input type="checkbox" id="ob-hidenums"><span>Hide calorie and body-weight numbers<small>Recommended if food, eating or weight feel stressful for you. You can change this anytime in your profile.</small></span></label>
+        <label class="ob-check"><input type="checkbox" id="ob-hidenums"><span>Hide calorie and body-weight numbers<small>Recommended if food, eating or weight feel stressful for you. You can change this anytime on the Dashboard, under Energy balance › Your preferences.</small></span></label>
       </div>
       <div class="btn-row">
         <button class="btn-secondary" onclick="obBack(1)" style="flex:0 0 80px">← Back</button>
@@ -1243,6 +1299,7 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
     <hr class="rule t">
     <button class="btn-primary" style="margin-bottom:16px" onclick="openLogModal()">+ Log a session</button>
     <div id="log-list"></div>
+    <div id="log-workplace-slot" style="margin-top:22px"></div>
   </div>
   <p class="copyright">© <span class="copy-year">2026</span> NeuroResilience Consulting Inc. All rights reserved.</p>
 </div>
@@ -1338,11 +1395,17 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
     <!-- RESULTS -->
     <div id="food-results" style="display:none"></div>
 
+    <!-- FOOD AND NEUROTOXINS: settings and flagged foods, directly under the scanner -->
+    <div id="food-neuro-slot" style="margin-top:20px"></div>
+
     <!-- HISTORY -->
     <div id="food-history-section" style="margin-top:20px">
       <div class="sec-ey g" style="margin-bottom:8px">Recent scans</div>
       <div id="food-history-list"></div>
     </div>
+
+    <!-- NUTRITION, NEUROTRANSMITTERS AND SUPPLEMENT STACK -->
+    <div id="food-sections" style="margin-top:22px"></div>
   </div>
   <p class="copyright">© <span class="copy-year">2026</span> NeuroResilience Consulting Inc. All rights reserved.</p>
 </div>
@@ -2004,10 +2067,10 @@ function switchView(name) {
 
   if (name === 'dashboard' && profile) renderDashboard();
   if (name === 'program' && profile) renderProgram();
-  if (name === 'log') renderLog();
+  if (name === 'log') { renderLog(); axisRenderWorkplace(); }
   if (name === 'profile') renderProfileView();
   if (name === 'crisis') { var s = document.getElementById('screen'); if(s) s.scrollTop = 0; }
-  if (name === 'food') { renderFoodHistory(); updateFoodMode(); }
+  if (name === 'food') { renderFoodHistory(); updateFoodMode(); axisRenderFoodNeuro(); axisRenderFoodSections(); }
   if (name === 'home') {
     if (profile) { showMainApp(); }
     else { showHero(); }
@@ -2196,6 +2259,8 @@ function renderDashboard() {
     <div class="macro-bar"><div class="bar-p" style="width:${pPct}%"></div><div class="bar-c" style="width:${cPct}%"></div><div class="bar-f" style="width:${fPct}%"></div></div>
     <div class="macro-legend"><span><div class="m-dot" style="background:var(--gold)"></div>Protein</span><span><div class="m-dot" style="background:var(--teal)"></div>Carbs</span><span><div class="m-dot" style="background:var(--purp)"></div>Fat</span></div>
 
+ ${axisPrefsBoxHTML()}
+
     ${parseInt(p.sleep) < 7 ? `<div class="card rt" style="margin-top:14px"><div class="label-xs r">Sleep debt — Nervous system recovery impaired</div><div class="card-body">You indicated ${p.sleep} hours of sleep. Below 7 hours, growth hormone release is suppressed, motor patterns fail to consolidate, and muscle catabolism increases by up to 55% during fat loss. This is the highest-priority intervention available to you.</div></div>` : ''}
 
     <div class="divider"></div>
@@ -2347,48 +2412,9 @@ function renderProgram() {
       </div>
     </div>
 
-    <!-- NUTRITION TIMING -->
-    <div class="prog-divider"><div class="prog-divider-line"></div><div class="prog-divider-text">Nutrition timing</div><div class="prog-divider-line"></div></div>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6">Your eating schedule is calibrated to your training time and goal. The nervous system reason explains why each window matters for your specific program.</p>
-    <table class="timing-table">
-      <thead><tr><th>Window</th><th>What to eat</th><th>Nervous system reason</th></tr></thead>
-      <tbody>${windows.map(w => `<tr>
-        <td><div class="t-win ${unlocked?'':'nb'}">${w.w}</div><div class="t-name ${unlocked?'':'nb'}">${w.name}</div></td>
-        <td class="${unlocked?'':'nb'}">${w.food}</td>
-        <td><div class="t-cns">${w.cns}</div></td>
-      </tr>`).join('')}</tbody>
-    </table>
+    <p class="food-pointer">Nutrition timing, neurotransmitters and your supplement stack are in the <a href="#" onclick="event.preventDefault();switchView('food')">Food tab</a>.</p>
 
-    <!-- NEUROTRANSMITTERS -->
-    <div class="prog-divider" style="margin-top:20px"><div class="prog-divider-line"></div><div class="prog-divider-text">Neurotransmitters</div><div class="prog-divider-line"></div></div>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6">Every brain chemical that drives your training is made from an amino acid in your food.</p>
-    <div class="nt-grid">
-      ${NT_ALL.map(nt => {
-        const isFree = true; // neurotransmitter information is general and always visible
-        return `<div class="nt-card ${isFree ? '' : 'locked'}">
-          <div class="nt-name" style="color:var(${nt.color})">${nt.name}${nt.goals.includes(p.goal) ? ' <span style="font-size:8px;background:var(--goldp);color:var(--gold);padding:2px 5px;border-radius:4px">KEY</span>' : ''}</div>
-          <div class="nt-built">From: ${nt.built}</div>
-          <div class="nt-body">${isFree ? nt.body : 'Unlock to reveal.'}</div>
-        </div>`;
-      }).join('')}
-    </div>
-
-    <!-- SUPPLEMENTS -->
-    ${p.supps && p.supps.length > 0 ? `
-    <div class="prog-divider" style="margin-top:20px"><div class="prog-divider-line"></div><div class="prog-divider-text">Your supplement stack</div><div class="prog-divider-line"></div></div>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6">What each supplement does to your nervous system — during training and after.</p>
-    ${p.supps.map(name => {
-      const d = SUPPS[name]; if(!d) return '';
-      return `<details><summary>${name}</summary><div class="details-body">
-        <div class="cns-panels">
-          <div class="cns-panel g"><div class="cns-panel-label g">Metabolic process</div><div class="cns-panel-body">${d.metabolic}</div></div>
-          <div class="cns-panel t"><div class="cns-panel-label t">Nervous system during training</div><div class="cns-panel-body">${d.during}</div></div>
-          <div class="cns-panel p"><div class="cns-panel-label p">Nervous system after training</div><div class="cns-panel-body">${d.after}</div></div>
-          <div class="cns-panel a"><div class="cns-panel-label a">Watch list</div><div class="cns-panel-body"><strong>Short:</strong> ${d.short}<br><strong>Long:</strong> ${d.long}</div></div>
-        </div></div></details>`;
-    }).join('')}` : ''}
-
-    <!-- WEEK 1 — FREE -->
+ <!-- WEEK 1 — FREE -->
     <div class="prog-divider" style="margin-top:20px"><div class="prog-divider-line"></div><div class="prog-divider-text">Your 4-week program</div><div class="prog-divider-line"></div></div>
 
     <div class="week-card">
@@ -3166,7 +3192,7 @@ function checkUnlock() {
       var nt = (typeof NT_ALL !== 'undefined') && NT_ALL.find(function(n){ return n.name===nm; });
       if (nt) { var b=el.querySelector('.nt-body'); if(b) b.textContent=nt.body; }
     });
-    try { if(typeof profile!=='undefined' && profile){ renderDashboard(); renderProgram(); } } catch(e){}
+    try { if(typeof profile!=='undefined' && profile){ renderDashboard(); renderProgram(); axisRenderFoodSections(); } } catch(e){}
     try { var pc=document.getElementById('program-content'); if(pc){ var bn=document.createElement('div'); bn.className='unlock-success'; bn.id='unlock-banner'; bn.style.cssText='display:block;margin:0 0 14px'; bn.textContent='\u2713 Unlocked \u2014 all content revealed'; pc.insertBefore(bn, pc.firstChild); } } catch(e){}
   } else {
     var err=document.getElementById('unlock-error');
@@ -3388,7 +3414,7 @@ document.querySelectorAll('.copy-year').forEach(function (el) { el.textContent =
     var kids = Array.prototype.slice.call(container.children);
     for (var i = 0; i < kids.length; i++) {
       var h = kids[i];
-      if (!isHeader(h, kind) || h.closest('details.info-sec')) continue;
+      if (!isHeader(h, kind) || h.closest('details.info-sec') || h.classList.contains('pin-open')) continue;
       var head = [h], body = [], j = i + 1;
       if (kind === 'dash') {
         while (j < kids.length && (kids[j].classList.contains('sec-head') || kids[j].classList.contains('rule'))) head.push(kids[j++]);
@@ -3412,9 +3438,10 @@ document.querySelectorAll('.copy-year').forEach(function (el) { el.textContent =
   function run() {
     collapse(document.getElementById('dashboard-content'), 'dash');
     collapse(document.getElementById('program-content'), 'prog');
+ collapse(document.getElementById('food-sections'), 'prog');
     collapse(document.getElementById('profile-content'), 'dash');
   }
-  ['dashboard-content', 'program-content', 'profile-content'].forEach(function (id) {
+  ['dashboard-content', 'program-content', 'profile-content', 'food-sections'].forEach(function (id) {
     var el = document.getElementById(id); if (!el) return;
     new MutationObserver(function () { run(); }).observe(el, { childList: true });
   });
@@ -3894,10 +3921,10 @@ function hnApply() {
       var el = ey.nextElementSibling;
       if (el && el.classList.contains('sec-head')) { el.textContent = 'Regular, balanced meals'; el = el.nextElementSibling; }
       var note = document.createElement('div'); note.className = 'hn-note';
-      note.innerHTML = 'Calorie and weight numbers are hidden. Regular meals with protein, colourful plants and enough water support steady energy and mood. You can show numbers again in your profile.';
+      note.innerHTML = 'Calorie and weight numbers are hidden. Regular meals with protein, colourful plants and enough water support steady energy and mood. You can show numbers again in Your preferences, just below.';
       var stop = function (x) { return !x || x.classList.contains('divider') || x.classList.contains('booking-cta') || x.classList.contains('sec-ey'); };
       var first = el;
-      while (!stop(el)) { var nx = el.nextElementSibling; el.style.display = 'none'; el = nx; }
+      while (!stop(el)) { var nx = el.nextElementSibling; if (!el.classList.contains('pref-keep')) el.style.display = 'none'; el = nx; }
       if (first) first.parentNode.insertBefore(note, first); else ey.parentNode.appendChild(note);
     });
   }
@@ -3905,10 +3932,12 @@ function hnApply() {
   if (pc) pc.querySelectorAll('.hook-nums').forEach(function (n) { n.style.display = 'none'; });
 }
 function hnToggle(on) {
+ var _pb = document.getElementById('pref-box'), _pd = _pb && _pb.closest('details'), _was = !!(_pd && _pd.open);
   try { profile.hideNumbers = !!on; STORE.set('profile', profile); } catch (e) {}
   if (typeof renderDashboard === 'function') renderDashboard();
   if (typeof renderProgram === 'function') try { renderProgram(); } catch (e) {}
   if (typeof renderProfileView === 'function') try { renderProfileView(); } catch (e) {}
+ if (_was) { var _tries = 0; (function _reopen() { var _nb = document.getElementById('pref-box'), _nd = _nb && _nb.closest('details'); if (_nd) { _nd.open = true; } else if (++_tries < 12) { setTimeout(_reopen, 25); } })(); }
 }
 ['renderDashboard', 'renderProgram'].forEach(function (name) {
   var o = window[name]; if (typeof o !== 'function') return;
@@ -3922,12 +3951,7 @@ function hnToggle(on) {
     var r = o.apply(this, arguments);
     try {
       var pc = document.getElementById('profile-content'); if (!pc || !profile) return r;
-      var focus = (profile.mhFocus && profile.mhFocus.length) ? profile.mhFocus.join(', ') : 'Not set';
-      var card = document.createElement('div'); card.className = 'pref-card';
-      card.innerHTML = '<h4>Your preferences</h4>' +
-        '<label class="ob-check"><input type="checkbox" ' + (profile.hideNumbers ? 'checked' : '') + ' onchange="hnToggle(this.checked)"><span>Hide calorie and body-weight numbers<small>Recommended if food, eating or weight feel stressful for you.</small></span></label>' +
-        '<div class="meta">Mental health focus: ' + ciEsc(focus) + '<br><a href="#" style="color:var(--teal)" onclick="event.preventDefault();showPrivacy()">Privacy notice</a> · Axis version ' + AXIS_VERSION + '</div>';
-      pc.insertBefore(card, pc.firstChild);
+      var card = document.createElement('div'); card.className = 'pref-card'; card.innerHTML = '<div class="meta" style="margin:0"><a href="#" style="color:var(--teal)" onclick="event.preventDefault();showPrivacy()">Privacy notice</a> · Axis version ' + AXIS_VERSION + '</div>'; pc.insertBefore(card, pc.firstChild);
     } catch (e) {}
     return r;
   };
@@ -4166,7 +4190,7 @@ function ntAnalyse(analysis, foodName) {
 }
 function ntPanelHTML(items, foodName) {
   if (!axisFoodRatingsOn()) {
-    return '<div class="nt-panel nt-off"><p>Personal neurotoxin ratings are off for workplace access. You can turn them on for yourself in Profile › Your preferences.</p></div>';
+    return '<div class="nt-panel nt-off"><p>Personal neurotoxin ratings are off for workplace access. You can turn them on for yourself in Food › Food and neurotoxins, below the scanner.</p></div>';
   }
   var level = items.reduce(function (m, x) { return Math.max(m, x.level); }, 0), tol = axisTolerance(), warn = level > 0 && level >= tol;
   var dot = level === 0 ? 0 : [0, 16.67, 50, 83.33][level], line = [0, 0, 33.33, 66.67][tol];
@@ -4260,41 +4284,99 @@ function evOpen(key) {
 }
 
 // ── Profile: tolerance, workplace code, food ratings, flagged foods, evidence ──
-function edSetTol(v) { var e = axisEdition(); e.tol = v; axisSetEdition(e); if (typeof renderProfileView === 'function') renderProfileView(); if (ntLast) ntRenderInto(ntLast.analysis, ntLast.foodName); }
+function edSetTol(v) { var e = axisEdition(); e.tol = v; axisSetEdition(e); axisRenderFoodNeuro(); if (ntLast) ntRenderInto(ntLast.analysis, ntLast.foodName); }
 function edSaveCode() {
   var inp = document.getElementById('ed-code'); if (!inp) return;
   var raw = inp.value.trim(), e = axisEdition();
   if (raw.length < 2) { alert('Please enter the workplace code from your employer.'); return; }
   e.code = raw.toUpperCase().slice(0, 40); e.foodRatings = false; axisSetEdition(e);
-  if (typeof renderProfileView === 'function') renderProfileView();
+  axisRenderWorkplace(); axisRenderFoodNeuro();
 }
-function edClearCode() { if (!confirm('Remove the workplace code? Axis will switch to the personal edition.')) return; var e = axisEdition(); delete e.code; delete e.foodRatings; axisSetEdition(e); if (typeof renderProfileView === 'function') renderProfileView(); }
+function edClearCode() { if (!confirm('Remove the workplace code? Axis will switch to the personal edition.')) return; var e = axisEdition(); delete e.code; delete e.foodRatings; axisSetEdition(e); axisRenderWorkplace(); axisRenderFoodNeuro(); }
 function edFood(on) { var e = axisEdition(); e.foodRatings = !!on; axisSetEdition(e); if (ntLast) ntRenderInto(ntLast.analysis, ntLast.foodName); }
-(function () {
-  var o = window.renderProfileView; if (typeof o !== 'function') return;
-  window.renderProfileView = function () {
-    var r = o.apply(this, arguments);
-    try {
-      var pc = document.getElementById('profile-content'); if (!pc || !profile) return r;
-      var e = axisEdition(), tol = axisTolerance(), pats = ntPatterns(), flags = ntFlags();
-      var card = document.createElement('div'); card.className = 'pref-card';
-      var tolBtns = [[1, 'Low tolerance', 'Warn me about any known neurotoxin risk'], [2, 'Mid tolerance', 'Warn me about moderate and high risks'], [3, 'High tolerance', 'Only warn me about high risks']]
+
+// These two cards used to live in Profile. They now sit under the food scanner (Food tab) and in the Log tab.
+function axisFoodNeuroHTML() {
+ var e = axisEdition(), tol = axisTolerance(), pats = ntPatterns(), flags = ntFlags();
+ var tolBtns = [[1, 'Low tolerance', 'Warn me about any known neurotoxin risk'], [2, 'Mid tolerance', 'Warn me about moderate and high risks'], [3, 'High tolerance', 'Only warn me about high risks']]
         .map(function (t) { return '<button type="button" class="tol-opt" aria-pressed="' + (tol === t[0]) + '" onclick="edSetTol(' + t[0] + ')"><b>' + t[1] + '</b><span>' + t[2] + '</span></button>'; }).join('');
-      card.innerHTML = '<h4>Food and neurotoxins</h4><div class="tol-grid" role="group" aria-label="Neurotoxin tolerance">' + tolBtns + '</div>' +
+ return '<h4>Food and neurotoxins</h4><div class="tol-grid" role="group" aria-label="Neurotoxin tolerance">' + tolBtns + '</div>' +
         (axisIsWork() ? '<label class="ob-check" style="margin-top:10px"><input type="checkbox" ' + (e.foodRatings ? 'checked' : '') + ' onchange="edFood(this.checked)"><span>Show neurotoxin ratings on my food results<small>Off by default for workplace access. Your choice stays on this device.</small></span></label>' : '') +
         (flags.length ? '<div class="meta"><b style="color:var(--white)">Foods that didn’t sit well:</b> ' + flags.slice(-6).map(function (f) { return ciEsc(f.name); }).join(', ') +
           (pats.length ? '<br>' + pats.map(function (p) { return 'Pattern: ' + p[1] + ' flagged foods contain ' + ciEsc(p[0].toLowerCase()) + '.'; }).join('<br>') + (tol > 1 ? ' A lower tolerance would warn you sooner.' : '') : '') + '</div>' : '') +
         '<div class="meta"><a href="#" style="color:var(--teal)" onclick="event.preventDefault();evOpen()">Open the evidence library</a></div>';
-      var wcard = document.createElement('div'); wcard.className = 'pref-card';
-      wcard.innerHTML = '<h4>Workplace access</h4>' + (axisIsWork()
+}
+function axisWorkplaceHTML() {
+ var e = axisEdition();
+ return '<h4>Workplace access</h4>' + (axisIsWork()
         ? '<p style="font-size:13px;color:var(--white);margin:0 0 6px">Workplace edition: <b>' + ciEsc(e.code) + '</b></p><p style="font-size:12px;color:var(--muted);margin:0 0 10px;line-height:1.55">The Facilitator guide is available in the Crisis tab. Your employer never sees your individual information.</p><button class="btn-secondary" type="button" style="margin:0" onclick="edClearCode()">Remove workplace code</button>'
         : '<p style="font-size:12.5px;color:var(--soft);margin:0 0 8px;line-height:1.55">If your employer or organization provides Axis, enter the code they gave you.</p><div style="display:flex;gap:8px"><input id="ed-code" type="text" maxlength="40" autocomplete="off" placeholder="Workplace code" style="flex:1;min-width:0;background:var(--ink);border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--white);font:15px Inter,sans-serif"><button class="btn-secondary" type="button" style="margin:0;width:auto;padding:0 16px" onclick="edSaveCode()">Save</button></div>');
-      var cards = pc.querySelectorAll('.pref-card'), anchor = cards.length ? cards[cards.length - 1].nextSibling : pc.firstChild;
-      pc.insertBefore(card, anchor); pc.insertBefore(wcard, card.nextSibling);
-    } catch (err) {}
-    return r;
-  };
-})();
+}
+function axisRenderFoodNeuro() { var s = document.getElementById('food-neuro-slot'); if (!s) return; try { s.innerHTML = '<div class="pref-card">' + axisFoodNeuroHTML() + '</div>'; } catch (err) { s.innerHTML = ''; } }
+function axisRenderWorkplace() { var s = document.getElementById('log-workplace-slot'); if (!s) return; try { s.innerHTML = '<div class="pref-card">' + axisWorkplaceHTML() + '</div>'; } catch (err) { s.innerHTML = ''; } }
+// "Your preferences" box, shown inside the energy balance block on the Dashboard
+// Nutrition timing, neurotransmitters and the supplement stack. These used to be in the Program tab; they now live in the Food tab.
+function axisFoodSectionsHTML(p) {
+  const windows = getWindows(p.goal, p.trainTime, p.duration, p.diet, p.protein, p.carbs, p.fat);
+  return `<!-- NUTRITION TIMING -->
+    <div class="prog-divider"><div class="prog-divider-line"></div><div class="prog-divider-text">Nutrition timing</div><div class="prog-divider-line"></div></div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6">Your eating schedule is calibrated to your training time and goal. The nervous system reason explains why each window matters for your specific program.</p>
+    <table class="timing-table">
+      <thead><tr><th>Window</th><th>What to eat</th><th>Nervous system reason</th></tr></thead>
+      <tbody>${windows.map(w => `<tr>
+        <td><div class="t-win ${unlocked?'':'nb'}">${w.w}</div><div class="t-name ${unlocked?'':'nb'}">${w.name}</div></td>
+        <td class="${unlocked?'':'nb'}">${w.food}</td>
+        <td><div class="t-cns">${w.cns}</div></td>
+      </tr>`).join('')}</tbody>
+    </table>
+
+    <!-- NEUROTRANSMITTERS -->
+    <div class="prog-divider" style="margin-top:20px"><div class="prog-divider-line"></div><div class="prog-divider-text">Neurotransmitters</div><div class="prog-divider-line"></div></div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6">Every brain chemical that drives your training is made from an amino acid in your food.</p>
+    <div class="nt-grid">
+      ${NT_ALL.map(nt => {
+        const isFree = true; // neurotransmitter information is general and always visible
+        return `<div class="nt-card ${isFree ? '' : 'locked'}">
+          <div class="nt-name" style="color:var(${nt.color})">${nt.name}${nt.goals.includes(p.goal) ? ' <span style="font-size:8px;background:var(--goldp);color:var(--gold);padding:2px 5px;border-radius:4px">KEY</span>' : ''}</div>
+          <div class="nt-built">From: ${nt.built}</div>
+          <div class="nt-body">${isFree ? nt.body : 'Unlock to reveal.'}</div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- SUPPLEMENTS -->
+    ${p.supps && p.supps.length > 0 ? `
+    <div class="prog-divider" style="margin-top:20px"><div class="prog-divider-line"></div><div class="prog-divider-text">Your supplement stack</div><div class="prog-divider-line"></div></div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6">What each supplement does to your nervous system — during training and after.</p>
+    ${p.supps.map(name => {
+      const d = SUPPS[name]; if(!d) return '';
+      return `<details><summary>${name}</summary><div class="details-body">
+        <div class="cns-panels">
+          <div class="cns-panel g"><div class="cns-panel-label g">Metabolic process</div><div class="cns-panel-body">${d.metabolic}</div></div>
+          <div class="cns-panel t"><div class="cns-panel-label t">Nervous system during training</div><div class="cns-panel-body">${d.during}</div></div>
+          <div class="cns-panel p"><div class="cns-panel-label p">Nervous system after training</div><div class="cns-panel-body">${d.after}</div></div>
+          <div class="cns-panel a"><div class="cns-panel-label a">Watch list</div><div class="cns-panel-body"><strong>Short:</strong> ${d.short}<br><strong>Long:</strong> ${d.long}</div></div>
+        </div></div></details>`;
+    }).join('')}` : ''}`;
+}
+function axisRenderFoodSections() {
+  var s = document.getElementById('food-sections'); if (!s) return;
+  try {
+    if (typeof profile === 'undefined' || !profile) {
+      s.innerHTML = '<div class="card" style="text-align:center"><div class="card-title">Your nutrition plan</div><div class="card-body">Build your profile to see your nutrition timing, the neurotransmitter guide and your supplement stack.</div><button class="btn-secondary" type="button" style="margin-top:12px" onclick="switchView(\'home\')">Build my profile →</button></div>';
+      return;
+    }
+    s.innerHTML = axisFoodSectionsHTML(profile);
+  } catch (err) { s.innerHTML = ''; }
+}
+
+function axisPrefsBoxHTML() {
+ try {
+  var focus = (profile.mhFocus && profile.mhFocus.length) ? profile.mhFocus.join(', ') : 'Not set';
+  return '<div class="pref-card pref-keep" id="pref-box"><h4>Your preferences</h4><label class="ob-check"><input type="checkbox" id="pref-hidenums" ' + (profile.hideNumbers ? 'checked' : '') + ' onchange="hnToggle(this.checked)"><span>Hide calorie and body-weight numbers<small>Recommended if food, eating or weight feel stressful for you.</small></span></label><div class="meta">Mental health focus: ' + ciEsc(focus) + '</div></div>';
+ } catch (err) { return ''; }
+}
+
 </script>
 <script>
 // ══════════════════════════════════════
@@ -4512,6 +4594,382 @@ async function bcOpen() {
   var b = document.createElement('button'); b.type = 'button'; b.className = 'btn-secondary'; b.style.marginTop = '8px';
   b.textContent = '▥ Scan a barcode'; b.setAttribute('aria-label', 'Scan a product barcode'); b.onclick = bcOpen;
   cam.appendChild(b);
+})();
+</script>
+<script>
+// ── AXIS FEED ──────────────────────────────────────────────────────────────
+// A scrolling feed of short fitness, food and mind-and-rest posts, opened from the logo.
+// Posts are written by NeuroResilience Consulting (built in below, plus optional ones you add in Supabase).
+// Nothing is pulled from social networks. Likes and saves stay on this device. No outside images load.
+(function () {
+  'use strict';
+  var KEY = 'axis_feed_v1', BATCH = 5, FRESH_MS = 10 * 60 * 1000;
+  var VIEWS = ['home', 'dashboard', 'program', 'log', 'profile', 'food', 'crisis'];
+  var CATS = {
+    fitness: { label: 'Fitness', icon: '\uD83D\uDCAA', c: '--gold', s: '--goldp' },
+    food:    { label: 'Food', icon: '\uD83E\uDD57', c: '--teal', s: '--tealp' },
+    recipes: { label: 'Recipes', icon: '\uD83C\uDF73', c: '--teal', s: '--tealp' },
+    meals:   { label: 'Meals', icon: '\uD83C\uDF71', c: '--gold', s: '--goldp' },
+    local:   { label: 'Local', icon: '\uD83D\uDCCD', c: '--purp', s: '--purpp' },
+    mind:    { label: 'Mind & Rest', icon: '\uD83C\uDF19', c: '--purp', s: '--purpp' }
+  };
+  var ORDER = ['fitness', 'food', 'recipes', 'meals', 'local', 'mind'];
+  var FILTERS = [['all', 'All'], ['fitness', 'Fitness'], ['food', 'Food'], ['recipes', 'Recipes'], ['meals', 'Meals'], ['local', 'Local'], ['mind', 'Mind & Rest'], ['saved', 'Saved']];
+  var PARTNER_EMAIL = 'neuroresiliencefitness@gmail.com';
+  var SHARE_URL = 'https://app.neuroresilienceconsulting.com';
+
+  // ---------- starter posts (general education, not medical advice) ----------
+  var SEED = [
+    { id: 'f1', cat: 'fitness', title: 'Ramp up before you lift heavy',
+      body: 'Before your first working set, do two or three lighter sets of the same movement, adding a little weight each time.',
+      why: 'Practising the pattern at a low load lets your nervous system organise the movement before it gets heavy.',
+      tryIt: 'Add one extra warm-up set to your first lift today.', action: { view: 'program', label: 'Open your program' } },
+    { id: 'f2', cat: 'fitness', title: 'Rest days are part of the plan',
+      body: 'Strength and fitness are built while you recover, not only while you train. If sleep, mood and energy are all low, an easier day is a smart choice.',
+      why: 'Stacking hard sessions without recovery can leave you feeling flat instead of stronger.',
+      tryIt: 'Rate your energy from 1 to 5 before you train. On a 1 or 2, keep it light.', action: { view: 'dashboard', label: 'Do today\u2019s check-in' } },
+    { id: 'f3', cat: 'fitness', title: 'What Canada\u2019s guidelines suggest',
+      body: 'Canadian guidelines for adults aged 18 to 64 suggest at least 150 minutes of moderate to vigorous activity each week, plus muscle-strengthening activities on at least 2 days.',
+      why: 'A mix of aerobic and strength work looks after both your heart and your muscles.',
+      tryIt: 'Add up this week\u2019s minutes. Where could one more 10-minute walk fit?', note: 'Source: Canadian 24-Hour Movement Guidelines for Adults.' },
+    { id: 'f4', cat: 'fitness', title: 'Break up long sitting',
+      body: 'Long stretches of sitting add up. Standing, stretching or walking for a couple of minutes every 30 to 60 minutes is a simple reset.',
+      why: 'Moving gets blood flowing and often lifts focus and mood.',
+      tryIt: 'Set a quiet 45-minute timer today and stand up whenever it goes off.', note: 'Canadian guidelines advise limiting sitting and breaking it up where possible.' },
+    { id: 'f5', cat: 'fitness', title: 'Consistency beats intensity',
+      body: 'Two 20-minute sessions you actually do are worth more than a perfect plan you skip. Shrink the session until it feels easy to start.',
+      why: 'A habit that repeats builds skill and confidence in a way that rare, big efforts don\u2019t.',
+      tryIt: 'Pick your smallest workout and do that one tomorrow.', action: { view: 'log', label: 'Log a session' } },
+    { id: 'f6', cat: 'fitness', title: 'A deload is not a day off',
+      body: 'In many programs every fourth week uses lighter weights or fewer sets with the same movements. You come back feeling fresher.',
+      why: 'Your body consolidates the work from the weeks before.',
+      tryIt: 'In a deload week, keep the same lifts but stop each set well short of struggling.', action: { view: 'program', label: 'See your program' } },
+    { id: 'f7', cat: 'fitness', title: 'Track more than the weights',
+      body: 'Next to each session, note how you slept and how you felt. Over a few weeks, patterns show up that numbers alone hide.',
+      why: 'Sleep, mood and training all influence one another.',
+      tryIt: 'Log your next session with a quick note on sleep and mood.', action: { view: 'log', label: 'Open your log' } },
+
+    { id: 'd1', cat: 'food', title: 'Make half your plate vegetables and fruit',
+      body: 'Canada\u2019s Food Guide suggests filling about half your plate with vegetables and fruit, a quarter with whole grains and a quarter with protein foods.',
+      why: 'Variety brings fibre, vitamins and minerals that support steady energy.',
+      tryIt: 'Add one extra colour to your next meal.', note: 'Source: Canada\u2019s Food Guide.' },
+    { id: 'd2', cat: 'food', title: 'Spread protein through the day',
+      body: 'Many people eat most of their protein at dinner. Including a protein food at each meal tends to work better for muscle and keeps you fuller.',
+      why: 'Your body uses protein steadily, so regular meals give it a steady supply.',
+      tryIt: 'Add a protein food to tomorrow\u2019s breakfast: eggs, yogurt, tofu or beans.' },
+    { id: 'd3', cat: 'food', title: 'Make water your drink of choice',
+      body: 'Canada\u2019s Food Guide recommends water as your go-to drink. Keep a bottle where you can see it.',
+      why: 'Being short on fluids can leave you feeling tired and foggy.',
+      tryIt: 'Have a glass of water with each meal today.', note: 'Source: Canada\u2019s Food Guide.' },
+    { id: 'd4', cat: 'food', title: 'Time your caffeine',
+      body: 'Caffeine can linger for hours. A common piece of sleep advice is to stop caffeine 4 to 6 hours before bed.',
+      why: 'Better sleep supports training, mood and appetite.',
+      tryIt: 'Move your last coffee an hour earlier this week and notice how you sleep.', note: 'General sleep-hygiene advice, not personal medical advice.' },
+    { id: 'd5', cat: 'food', title: 'Don\u2019t wait until you\u2019re ravenous',
+      body: 'Going very long without eating can lead to big hunger and rushed choices. Regular meals and planned snacks help keep energy and mood steadier.',
+      why: 'Steady meals tend to mean steadier energy.',
+      tryIt: 'Plan one snack for the time your energy usually dips.' },
+    { id: 'd6', cat: 'food', title: 'Feed your gut, feed your mood',
+      body: 'Fibre from beans, oats, vegetables and fruit feeds your gut bacteria, and your gut and brain are in constant conversation. A varied plant intake supports both.',
+      why: 'Researchers are actively studying the gut-brain link, and the early signs are encouraging.',
+      tryIt: 'Add beans or lentils to one meal this week.' },
+    { id: 'd7', cat: 'food', title: 'Read the label, not the front',
+      body: 'The front of a package shows what marketing wants you to see. The nutrition table and the ingredient list show what is inside.',
+      why: 'Checking sodium, sugar and the first few ingredients quickly shows how processed something is.',
+      tryIt: 'Scan the barcode on two similar products and compare them.', action: { view: 'food', label: 'Open the scanner' } },
+
+    { id: 'r1', cat: 'recipes', title: 'Overnight oats',
+      body: 'In a jar, stir half a cup of rolled oats, half a cup of milk or plant milk and a quarter cup of yogurt. Add a spoon of chia or seeds if you like. Cover, chill overnight, and top with fruit and nuts in the morning.',
+      why: 'Oats bring fibre and the yogurt adds protein for a steadier start.',
+      tryIt: 'Make two jars tonight so tomorrow morning is already done.', note: 'Check every ingredient for allergies.' },
+    { id: 'r2', cat: 'recipes', title: 'Three-bean veggie chili',
+      body: 'Soften a chopped onion and pepper in a pot. Add two cans of beans (rinsed), a can of diced tomatoes, chili powder and cumin. Simmer 20 to 25 minutes. Serve with rice or whole-grain bread.',
+      why: 'Beans give fibre and plant protein, and one pot makes several meals.',
+      tryIt: 'Freeze half in portions for a busy day.', note: 'Rinsing canned beans helps cut the salt.' },
+    { id: 'r3', cat: 'recipes', title: 'Veggie egg scramble',
+      body: 'Whisk two or three eggs. Cook chopped vegetables in a pan until soft, pour in the eggs and stir gently until set. Fold in a handful of greens and some herbs at the end.',
+      why: 'Eggs and vegetables make a quick, protein-rich meal.',
+      tryIt: 'Use whatever vegetables are left in the fridge.', note: 'Cook eggs until firm.' },
+
+    { id: 'ml1', cat: 'meals', title: 'Build a balanced plate',
+      body: 'Fill half your plate with vegetables and fruit, a quarter with whole grains and a quarter with protein foods, as Canada\u2019s Food Guide suggests. A little olive oil, nuts or avocado rounds it out.',
+      why: 'A simple template means no counting is needed.',
+      tryIt: 'Picture your next dinner as a plate before you start cooking.', note: 'Source: Canada\u2019s Food Guide.' },
+    { id: 'ml2', cat: 'meals', title: 'A protein-first breakfast',
+      body: 'Start with a protein food such as eggs, Greek yogurt, tofu or cottage cheese, then add fruit or whole grains. Protein early in the day can help you feel fuller through the morning.',
+      why: 'A solid start makes it easier to avoid a mid-morning scramble.',
+      tryIt: 'Choose one protein you will have at breakfast all week.' },
+    { id: 'ml3', cat: 'meals', title: 'Pack a training-day lunch',
+      body: 'Pack a protein food, a whole-grain carbohydrate and plenty of vegetables, plus water. Cook once, eat twice: last night\u2019s dinner makes an easy lunch.',
+      why: 'Having food ready avoids rushed choices around training.',
+      tryIt: 'Cook a double portion at dinner tonight.' },
+
+    { id: 'l1', cat: 'local', title: 'Eat what\u2019s in season near you',
+      body: 'Seasonal produce is often fresher and cheaper. Ask your local market what is in season this month and build one meal around it.',
+      why: 'Fresh, varied produce supports a varied diet.',
+      tryIt: 'Ask one vendor what they would cook tonight.' },
+    { id: 'l2', cat: 'local', title: 'Ask what\u2019s in it',
+      body: 'When you buy prepared food from a local kitchen or market, ask what is in it, especially if you have allergies. Small makers are usually glad to tell you.',
+      why: 'Clear answers keep you safe and help you eat what suits you.',
+      tryIt: 'Next time, ask: \u201CWhat\u2019s in this, and where was it made?\u201D' },
+
+    { id: 'm1', cat: 'mind', title: 'The physiological sigh',
+      body: 'Breathe in through your nose, then take a second short sip of air on top. Let a long, slow breath out through your mouth. Repeat two or three times.',
+      why: 'A longer exhale signals to your body that it can settle.',
+      tryIt: 'Use it before a hard conversation, a heavy lift or bedtime.', note: 'If you feel dizzy, stop and breathe normally.' },
+    { id: 'm2', cat: 'mind', title: 'Box breathing',
+      body: 'Breathe in for four, hold for four, breathe out for four, hold for four. Four rounds takes about a minute.',
+      why: 'A steady rhythm gives busy thoughts something simple to follow.',
+      tryIt: 'Do four rounds before your next meeting.', note: 'If you feel dizzy, stop and breathe normally.' },
+    { id: 'm3', cat: 'mind', title: 'Guard your wind-down',
+      body: 'Canadian guidelines suggest 7 to 9 hours of sleep for adults, with regular bed and wake times. Dim lights and fewer screens in the last hour can help.',
+      why: 'A consistent schedule helps your body clock.',
+      tryIt: 'Pick a bedtime, then set a \u201Cstart winding down\u201D alarm 45 minutes earlier.', note: 'Source: Canadian 24-Hour Movement Guidelines for Adults.' },
+    { id: 'm4', cat: 'mind', title: 'Get outside early',
+      body: 'Daylight in the first hour or two after waking helps set your body clock. A short walk counts, even on a cloudy day.',
+      why: 'Light is the main signal your internal clock uses.',
+      tryIt: 'Take your first coffee or tea outside tomorrow.' },
+    { id: 'm5', cat: 'mind', title: 'Name it to tame it',
+      body: 'Putting a feeling into words, even silently, can take some of the edge off. Try \u201CI\u2019m feeling anxious about\u2026\u201D instead of \u201CI\u2019m a mess.\u201D',
+      why: 'Research on \u201Caffect labelling\u201D suggests that naming an emotion can lower its intensity for many people.',
+      tryIt: 'Write one sentence about how you feel right now.', action: { view: 'dashboard', label: 'Do today\u2019s check-in' } },
+    { id: 'm6', cat: 'mind', title: 'A five-senses reset',
+      body: 'Notice five things you can see, four you can feel, three you can hear, two you can smell and one you can taste. It anchors you in the present.',
+      why: 'It gently moves your attention from racing thoughts to the room around you.',
+      tryIt: 'Try it the next time you feel tense.' },
+    { id: 'm7', cat: 'mind', pin: true, title: 'You don\u2019t have to carry it alone',
+      body: 'If things feel too heavy, talking helps. In Canada you can call or text 988 any time, day or night. In an emergency, call 911.',
+      why: 'Reaching out early is a strength, not a last resort.',
+      tryIt: 'Save 988 in your phone now, just in case.', action: { view: 'crisis', label: 'Open crisis support' } }
+  ];
+
+  // ---------- state (stays on this device) ----------
+  var state = load(), remote = [], remoteAt = 0, remoteOrg = null, filter = 'all', current = [], shown = 0, lastFocus = null, io = null, toastTimer = null;
+  var el = {};
+
+  function clean(a) { return Array.isArray(a) ? a.filter(function (x) { return typeof x === 'string' && x.length < 80; }).slice(-500) : []; }
+  function load() {
+    try { var d = JSON.parse(localStorage.getItem(KEY)); if (d && typeof d === 'object') return { likes: clean(d.likes), saves: clean(d.saves), opened: !!d.opened }; } catch (e) {}
+    return { likes: [], saves: [], opened: false };
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function has(list, id) { return list.indexOf(id) !== -1; }
+  function toggle(list, id) { var i = list.indexOf(id); if (i === -1) list.push(id); else list.splice(i, 1); save(); return i === -1; }
+
+  // ---------- optional posts you add in Supabase (read-only, checked before use) ----------
+  function str(v, max) { return (typeof v === 'string' ? v : '').trim().slice(0, max); }
+  function cleanRemote(r) {
+    if (!r || typeof r !== 'object' || typeof r.id !== 'string' || !CATS.hasOwnProperty(r.category)) return null;
+    var title = str(r.title, 90), body = str(r.body, 600);
+    if (title.length < 3 || body.length < 10) return null;
+    var p = { id: 'r:' + r.id.slice(0, 60), cat: r.category, title: title, body: body, why: str(r.why, 300), tryIt: str(r.try_it, 200), note: str(r.source_note, 160), remote: true };
+    var img = str(r.image_path, 200);
+    if (img && /^[A-Za-z0-9\/_.-]{1,200}$/.test(img) && img.indexOf('..') === -1 && typeof SUPABASE_URL === 'string') p.img = SUPABASE_URL.replace(/\/+$/, '') + '/storage/v1/object/public/feed/' + img.split('/').map(encodeURIComponent).join('/');
+    var url = str(r.link_url, 300);
+    if (/^https:\/\/[^\s]{3,}$/.test(url)) p.link = { url: url, label: str(r.link_label, 40) || 'Read more' };
+    var v = str(r.action_view, 20);
+    if (VIEWS.indexOf(v) !== -1) p.action = { view: v, label: str(r.action_label, 40) || 'Open' };
+    var ex = str(r.expires_at, 40);
+    if (ex && !isNaN(Date.parse(ex))) { if (Date.parse(ex) < Date.now()) return null; p.expires = ex; }
+    var hn = str(r.hub_name, 60);
+    if (hn) { var hu = str(r.hub_url, 200); p.hub = { name: hn, region: str(r.hub_region, 60), url: /^https:\/\/[^\s]{3,}$/.test(hu) ? hu : '' }; }
+    return p;
+  }
+  // The workplace code (if the person has entered one) only chooses which partner hubs they see. It is sent to your own Supabase, nowhere else.
+  function orgCode() { try { var e = JSON.parse(localStorage.getItem('axis_edition') || 'null'), c = e && typeof e.code === 'string' ? e.code.trim().toUpperCase() : ''; return /^[A-Z0-9_-]{1,40}$/.test(c) ? c : ''; } catch (x) { return ''; } }
+  function loadRemote(done) {
+    var org = orgCode();
+    if ((remoteOrg === org && Date.now() - remoteAt < FRESH_MS) || typeof SUPABASE_URL !== 'string' || typeof SUPABASE_KEY !== 'string' || typeof fetch !== 'function') return;
+    remoteAt = Date.now(); remoteOrg = org;
+    var base = SUPABASE_URL.replace(/\/+$/, ''), hdr = { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY };
+    var ctl = typeof AbortController === 'function' ? new AbortController() : null, t = setTimeout(function () { if (ctl) ctl.abort(); }, 4000), sig = ctl ? ctl.signal : undefined;
+    function take(rows) {
+      clearTimeout(t); var out = [], seen = {};
+      (Array.isArray(rows) ? rows : []).forEach(function (r) { var p = cleanRemote(r); if (p && !seen[p.id]) { seen[p.id] = 1; out.push(p); } });
+      if (out.length || remote.length) { remote = out; if (done) done(); }
+    }
+    // First choice: the feed_public() function (includes partner hubs). If it is not set up yet, fall back to the plain posts table.
+    fetch(base + '/rest/v1/rpc/feed_public', { method: 'POST', headers: { apikey: hdr.apikey, Authorization: hdr.Authorization, 'Content-Type': 'application/json' }, body: JSON.stringify({ p_org: org || null }), signal: sig })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('rpc')); })
+      .then(take)
+      .catch(function () {
+        return fetch(base + '/rest/v1/feed_posts?select=id,category,title,body,why,try_it,image_path,link_url,link_label,action_view,action_label,source_note,created_at&published=eq.true&order=created_at.desc&limit=60', { headers: hdr, signal: sig })
+          .then(function (r) { return r.ok ? r.json() : []; }).then(take);
+      })
+      .catch(function () { clearTimeout(t); });
+  }
+
+  // ---------- ordering ----------
+  function rotate(arr, n) { if (!arr.length) return arr; var k = ((n % arr.length) + arr.length) % arr.length; return arr.slice(k).concat(arr.slice(0, k)); }
+  function dayNo() { return Math.floor(Date.now() / 86400000); }
+  function byCat(cat) {
+    var seed = SEED.filter(function (p) { return p.cat === cat && !p.pin; }), pins = SEED.filter(function (p) { return p.cat === cat && p.pin; });
+    return remote.filter(function (p) { return p.cat === cat; }).concat(rotate(seed, dayNo())).concat(pins);
+  }
+  function build() {
+    if (filter === 'saved') {
+      var all = remote.concat(SEED); return state.saves.slice().reverse().map(function (id) { return all.filter(function (p) { return p.id === id; })[0]; }).filter(Boolean);
+    }
+    if (filter !== 'all') { var l = byCat(filter); return filter === 'mind' ? SEED.filter(function (p) { return p.pin; }).concat(l.filter(function (p) { return !p.pin; })) : l; }
+    var cols = rotate(ORDER, dayNo()).map(byCat), out = [], i = 0, more = true;
+    while (more) { more = false; cols.forEach(function (c) { if (i < c.length) { out.push(c[i]); more = true; } }); i++; }
+    return out;
+  }
+
+  // ---------- drawing ----------
+  function mk(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function toast(msg) { if (!el.toast) return; el.toast.textContent = msg; el.toast.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.toast.classList.remove('on'); }, 2200); }
+  function share(p) {
+    var text = p.title + '. ' + p.body + ' \u2014 Axis, ' + SHARE_URL;
+    if (typeof navigator.share === 'function') { navigator.share({ title: p.title, text: text }).catch(function () {}); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { toast('Copied to share'); }, function () { toast('Sharing isn\u2019t available here'); }); return; }
+    toast('Sharing isn\u2019t available here');
+  }
+  function iconBtn(label, glyph, pressed, onTap) {
+    var b = mk('button', 'axf-ib', glyph); b.type = 'button'; b.setAttribute('aria-label', label); if (pressed !== null) b.setAttribute('aria-pressed', String(pressed));
+    b.addEventListener('click', onTap); return b;
+  }
+  function card(p) {
+    var cat = CATS[p.cat], a = mk('article', 'axf-card'); a.setAttribute('data-id', p.id); a.setAttribute('data-cat', p.cat); a.style.setProperty('--c', 'var(' + cat.c + ')'); a.style.setProperty('--s', 'var(' + cat.s + ')');
+    var band = mk('div', 'axf-band'); band.appendChild(mk('span', 'axf-pill', cat.label)); var big = mk('span', 'axf-big', cat.icon); big.setAttribute('aria-hidden', 'true'); band.appendChild(big); a.appendChild(band);
+    if (p.img) { var im = mk('img', 'axf-img'); im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.referrerPolicy = 'no-referrer'; im.src = p.img; im.addEventListener('error', function () { im.remove(); }); a.appendChild(im); }
+    var b = mk('div', 'axf-body');
+    if (p.hub) b.appendChild(mk('p', 'axf-hub', 'Partner hub \u00B7 ' + p.hub.name + (p.hub.region ? ' \u00B7 ' + p.hub.region : '')));
+    b.appendChild(mk('h3', 'axf-title', p.title)); b.appendChild(mk('p', 'axf-text', p.body));
+    if (p.expires) { var until = new Date(p.expires); b.appendChild(mk('p', 'axf-until', 'Available until ' + until.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' }))); }
+    if (p.why) { var w = mk('p', 'axf-why'); w.appendChild(mk('b', '', 'Why it works')); w.appendChild(document.createTextNode(p.why)); b.appendChild(w); }
+    if (p.tryIt) { var t = mk('p', 'axf-try'); t.appendChild(mk('b', '', 'Try this')); t.appendChild(document.createTextNode(p.tryIt)); b.appendChild(t); }
+    if (p.note) b.appendChild(mk('p', 'axf-note', p.note));
+    var acts = mk('div', 'axf-acts');
+    var like = iconBtn('Like', has(state.likes, p.id) ? '\u2665' : '\u2661', has(state.likes, p.id), function () { var on = toggle(state.likes, p.id); like.textContent = on ? '\u2665' : '\u2661'; like.setAttribute('aria-pressed', String(on)); like.setAttribute('aria-label', on ? 'Unlike' : 'Like'); });
+    like.setAttribute('aria-label', has(state.likes, p.id) ? 'Unlike' : 'Like');
+    var sv = iconBtn('Save', '\uD83D\uDD16', has(state.saves, p.id), function () { var on = toggle(state.saves, p.id); sv.setAttribute('aria-pressed', String(on)); sv.setAttribute('aria-label', on ? 'Remove from saved' : 'Save'); toast(on ? 'Saved' : 'Removed from saved'); if (filter === 'saved' && !on) { a.remove(); if (!el.list.querySelector('.axf-card')) draw(); } });
+    sv.setAttribute('aria-label', has(state.saves, p.id) ? 'Remove from saved' : 'Save');
+    var sh = iconBtn('Share', '\u2197', null, function () { share(p); });
+    acts.appendChild(like); acts.appendChild(sv); acts.appendChild(sh);
+    if (p.action) { var go = mk('button', 'axf-go', p.action.label); go.type = 'button'; go.addEventListener('click', function () { close(true); if (typeof switchView === 'function') switchView(p.action.view); }); acts.appendChild(go); }
+    else if (p.link || (p.hub && p.hub.url)) { var lk = p.link || { url: p.hub.url, label: 'Visit the hub' }; var ln = mk('a', 'axf-go', lk.label); ln.href = lk.url; ln.target = '_blank'; ln.rel = 'noopener noreferrer'; acts.appendChild(ln); }
+    b.appendChild(acts); a.appendChild(b); return a;
+  }
+  function more() {
+    if (el.moreBtn) { el.moreBtn.remove(); el.moreBtn = null; } if (io) { io.disconnect(); }
+    var end = Math.min(shown + BATCH, current.length);
+    for (; shown < end; shown++) el.list.appendChild(card(current[shown]));
+    if (shown < current.length) {
+      el.moreBtn = mk('button', 'axf-more', 'Show more'); el.moreBtn.type = 'button'; el.moreBtn.addEventListener('click', more); el.list.appendChild(el.moreBtn);
+      if (typeof IntersectionObserver === 'function') { io = io || new IntersectionObserver(function (es) { if (es.some(function (x) { return x.isIntersecting; }) && el.moreBtn) more(); }, { root: el.scroll, rootMargin: '300px' }); io.observe(el.moreBtn); }
+    } else if (current.length) {
+      var e = mk('div', 'axf-end'); e.appendChild(mk('b', '', 'You\u2019re all caught up')); e.appendChild(document.createTextNode('New posts are added regularly. The order refreshes every day.')); el.list.appendChild(e);
+    }
+  }
+  function draw() {
+    el.list.textContent = ''; shown = 0; el.moreBtn = null; current = build();
+    if (filter === 'mind' || filter === 'all') {
+      if (filter === 'mind') { var cb = mk('div', 'axf-banner-crisis'); cb.appendChild(document.createTextNode('If you\u2019re struggling, you don\u2019t have to wait. Call or text ')); var tel = mk('a', '', '988'); tel.href = 'tel:988'; cb.appendChild(tel); cb.appendChild(document.createTextNode(' any time. In an emergency, call 911.')); el.list.appendChild(cb); }
+    }
+    if (filter === 'local') {
+      var cta = mk('div', 'axf-cta'); cta.appendChild(mk('b', '', 'Local hubs'));
+      cta.appendChild(document.createTextNode('Fresh food and meals from kitchens, grocers and markets near you, shared with their permission. Run a local food business or a workplace kitchen? '));
+      var pa = mk('a', '', 'Become a partner hub'); pa.href = 'mailto:' + PARTNER_EMAIL + '?subject=' + encodeURIComponent('Axis partner hub'); cta.appendChild(pa); el.list.appendChild(cta);
+    }
+    if (!current.length) { el.list.appendChild(mk('div', 'axf-empty', filter === 'saved' ? 'Nothing saved yet. Tap the bookmark on any post to keep it here.' : 'No posts yet.')); return; }
+    more();
+  }
+  function setFilter(f) {
+    filter = f; Array.prototype.forEach.call(el.chips.children, function (c) { c.setAttribute('aria-checked', String(c.getAttribute('data-f') === f)); });
+    draw(); el.scroll.scrollTop = 0;
+  }
+
+  // ---------- open / close ----------
+  function focusables() { return Array.prototype.slice.call(el.root.querySelectorAll('button, a[href]')).filter(function (n) { return !n.disabled && n.offsetParent !== null || n === el.close; }); }
+  function onKey(e) {
+    if (!el.root.classList.contains('open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Tab') { var f = focusables(); if (!f.length) return; var first = f[0], last = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } }
+  }
+  function open(from) {
+    if (el.root.classList.contains('open')) return;
+    lastFocus = from || document.activeElement; el.root.classList.add('open'); document.documentElement.style.overflow = 'hidden';
+    var app = document.getElementById('app'); if (app) { app.setAttribute('inert', ''); app.setAttribute('aria-hidden', 'true'); }
+    if (!state.opened) { state.opened = true; save(); var d = document.querySelector('.axf-dot'); if (d) d.remove(); }
+    setFilter(filter); loadRemote(function () { if (el.root.classList.contains('open')) { var keep = el.scroll.scrollTop; draw(); el.scroll.scrollTop = keep; } });
+    el.close.focus();
+  }
+  function close(keepFocus) {
+    if (!el.root.classList.contains('open')) return;
+    el.root.classList.remove('open'); document.documentElement.style.overflow = '';
+    var app = document.getElementById('app'); if (app) { app.removeAttribute('inert'); app.removeAttribute('aria-hidden'); }
+    if (!keepFocus && lastFocus && typeof lastFocus.focus === 'function') { try { lastFocus.focus(); } catch (e) {} }
+  }
+
+  // ---------- build the screen once, hook the logo ----------
+  function init() {
+    if (document.getElementById('axf')) return;
+    var root = mk('div'); root.id = 'axf'; root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); root.setAttribute('aria-label', 'Axis Feed');
+    var head = mk('div', 'axf-head'); var x = mk('button', 'axf-x', '\u2715'); x.type = 'button'; x.setAttribute('aria-label', 'Close the feed'); x.addEventListener('click', function () { close(); });
+    var tt = mk('div'); tt.appendChild(mk('h2', 'axf-ttl', 'Axis Feed')); tt.appendChild(mk('p', 'axf-sub', 'Fitness \u00B7 Food \u00B7 Local \u00B7 Mind & Rest')); head.appendChild(x); head.appendChild(tt);
+    var chips = mk('div', 'axf-chips'); chips.setAttribute('role', 'radiogroup'); chips.setAttribute('aria-label', 'Choose a topic');
+    FILTERS.forEach(function (f) { var c = mk('button', 'axf-chip', f[1]); c.type = 'button'; c.setAttribute('role', 'radio'); c.setAttribute('data-f', f[0]); c.setAttribute('aria-checked', String(f[0] === 'all')); c.addEventListener('click', function () { setFilter(f[0]); }); chips.appendChild(c); });
+    var scroll = mk('div', 'axf-scroll'); var list = mk('div', 'axf-list'); var foot = mk('p', 'axf-foot', 'Educational content from NeuroResilience Consulting Inc. It is general information, not medical advice.');
+    scroll.appendChild(list); scroll.appendChild(foot);
+    var toastEl = mk('div'); toastEl.id = 'axf-toast'; toastEl.setAttribute('role', 'status'); toastEl.setAttribute('aria-live', 'polite');
+    root.appendChild(head); root.appendChild(chips); root.appendChild(scroll); root.appendChild(toastEl); document.body.appendChild(root);
+    el = { root: root, close: x, chips: chips, scroll: scroll, list: list, toast: toastEl, moreBtn: null };
+    document.addEventListener('keydown', onKey);
+
+    var logo = document.querySelector('.top-bar .brand-mark');
+    if (logo) {
+      logo.setAttribute('role', 'button'); logo.setAttribute('tabindex', '0'); logo.setAttribute('aria-label', 'Open Axis Feed'); logo.setAttribute('title', 'Axis Feed');
+      logo.addEventListener('click', function (e) { e.preventDefault(); open(logo); });
+      logo.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(logo); } });
+      if (!state.opened && logo.parentNode && !logo.parentNode.querySelector('.axf-dot')) { var dot = mk('span', 'axf-dot'); dot.setAttribute('aria-hidden', 'true'); logo.parentNode.appendChild(dot); }
+    }
+  }
+  window.AXIS_FEED = { open: open, close: close, seed: SEED, posts: function () { return current.slice(); }, state: function () { return JSON.parse(JSON.stringify(state)); }, filter: function () { return filter; }, setFilter: setFilter };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<script>
+// ── PINNED SECTIONS: "Your wellbeing" tops the Dashboard and "Your 4-week program" tops the Program. Both stay open (no collapsing). ──
+(function () {
+  'use strict';
+  function isStop(el) { var c = el.classList; return c.contains('divider') || c.contains('booking-cta') || c.contains('disclaimer') || c.contains('prog-intro') || c.contains('hook-card') || c.contains('ci-card'); }
+  // kind 'dash' headers are .sec-ey, kind 'prog' headers are .prog-divider
+  function pin(container, kind, isTarget) {
+    if (!container) return;
+    var headerCls = kind === 'dash' ? 'sec-ey' : 'prog-divider';
+    // 1. if the section was already turned into a collapsible block, open it back up into plain content
+    var wrapped = Array.prototype.slice.call(container.children).filter(function (d) {
+      if (d.tagName !== 'DETAILS' || !d.classList.contains('info-sec')) return false;
+      var h = d.querySelector('summary .' + headerCls); return h && isTarget(h);
+    })[0];
+    if (wrapped) {
+      var sum = wrapped.querySelector('summary'), body = wrapped.querySelector('.info-body'), frag = document.createDocumentFragment();
+      Array.prototype.slice.call(sum.children).forEach(function (c) { if (!c.classList.contains('info-hint')) frag.appendChild(c); });
+      if (body) Array.prototype.slice.call(body.children).forEach(function (c) { frag.appendChild(c); });
+      container.insertBefore(frag, wrapped); wrapped.remove();
+    }
+    // 2. find the heading and everything that belongs under it
+    var kids = Array.prototype.slice.call(container.children), hi = -1;
+    for (var i = 0; i < kids.length; i++) if (kids[i].classList.contains(headerCls) && isTarget(kids[i])) { hi = i; break; }
+    if (hi < 0) return;
+    var group = [kids[hi]];
+    for (var j = hi + 1; j < kids.length; j++) { var k = kids[j]; if (k.classList.contains(headerCls) || isStop(k)) break; group.push(k); }
+    kids[hi].classList.add('pin-open');
+    // 3. put the whole group first, in its own order
+    var ref = Array.prototype.slice.call(container.children).filter(function (c) { return group.indexOf(c) === -1; })[0] || null;
+    group.forEach(function (el) { container.insertBefore(el, ref); });
+  }
+  function pinDashboard() { pin(document.getElementById('dashboard-content'), 'dash', function (h) { return /^dashboard$/i.test(h.textContent.trim()); }); }
+  function pinProgram() { pin(document.getElementById('program-content'), 'prog', function (h) { return /4-week program/i.test(h.textContent); }); }
+  function wrap(name, fn) {
+    var o = window[name]; if (typeof o !== 'function') return;
+    window[name] = function () { var r = o.apply(this, arguments); try { fn(); } catch (e) {} return r; };
+  }
+  wrap('renderDashboard', pinDashboard);
+  wrap('renderProgram', pinProgram);
+  pinDashboard(); pinProgram();
+  window.AXIS_PIN = { dashboard: pinDashboard, program: pinProgram };
 })();
 </script>
 </body>
