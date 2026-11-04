@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your book | NeuroResilience Consulting</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://fwravakcuoznizuariik.supabase.co; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<style>
+  :root { --bg:#0a0d14; --card:#121726; --line:#252c44; --text:#f7f5ef; --soft:#c9cfe4; --muted:#8b91b0; --gold:#c9a84c; --teal:#2ec4b6; --red:#f87171; --ink:#0a0d14; color-scheme: dark; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f6f4ee; --card:#ffffff; --line:#dedacd; --text:#14182a; --soft:#383e57; --muted:#5c6280; --gold:#8a6d12; --teal:#0b7d73; --red:#b42318; --ink:#ffffff; color-scheme: light; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.55; }
+  body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: max(20px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom)); }
+  main { width: 100%; max-width: 460px; }
+  .brand { text-align: center; margin-bottom: 22px; }
+  .word { font-family: Georgia, "Times New Roman", serif; font-weight: 600; font-size: 34px; letter-spacing: .28em; padding-left: .28em; line-height: 1; margin: 0; }
+  .tag { font-size: 13px; color: var(--muted); letter-spacing: .04em; margin: 8px 0 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px 22px; text-align: center; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; font-size: 26px; margin: 0 0 6px; }
+  .book { color: var(--gold); font-weight: 600; margin: 0 0 18px; overflow-wrap: anywhere; }
+  .lead { color: var(--soft); font-size: 15px; margin: 0 0 20px; }
+  button.go { width: 100%; min-height: 56px; border: 0; border-radius: 12px; background: var(--gold); color: var(--ink); font: 700 17px system-ui, sans-serif; cursor: pointer; }
+  button.go[disabled] { opacity: .6; cursor: progress; }
+  button.go:focus-visible, a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  #status { min-height: 1.6em; margin: 16px 0 0; font-size: 15px; }
+  #status.ok { color: var(--teal); }
+  #status.bad { color: var(--red); }
+  #status a { color: inherit; }
+  ul.notes { list-style: none; padding: 0; margin: 22px 0 0; text-align: left; color: var(--muted); font-size: 13px; }
+  ul.notes li { padding: 7px 0 7px 22px; position: relative; border-top: 1px solid var(--line); }
+  ul.notes li:first-child { border-top: 0; }
+  ul.notes li::before { content: "\2022"; position: absolute; left: 6px; color: var(--gold); }
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 20px; }
+  footer a { color: var(--soft); }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">
+    <p class="word">AXIS</p>
+    <p class="tag">Built to evolve with you.</p>
+  </div>
+
+  <section class="card" aria-labelledby="h">
+    <h1 id="h">Thank you</h1>
+    <p class="book" id="title"></p>
+    <p class="lead" id="lead">Your payment went through. Tap the button to download your personal copy.</p>
+    <button type="button" class="go" id="go">Download your book</button>
+    <p id="status" role="status" aria-live="polite"></p>
+    <ul class="notes" id="notes">
+      <li id="pre-note" class="hidden"></li>
+      <li>Your copy has your email address printed on every page.</li>
+      <li>This link works for 60 days and up to 10 downloads, and a download is only counted when the file is delivered.</li>
+      <li>Personal use only, please. Don't share the file or this link.</li>
+      <li>On a phone, if the book opens in a new tab, use Share, then Save to Files.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span id="copy"></span><br>
+    Need help? <a id="help" href="#">Email us</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  // ---- change these if anything moves ----
+  var CONFIG = {
+    functionUrl: 'https://fwravakcuoznizuariik.supabase.co/functions/v1/book',
+    bookTitle: 'Your book',
+    supportEmail: 'neuroresiliencefitness@gmail.com'
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var btn = $('go'), statusEl = $('status');
+  var session = '';
+  try { session = new URLSearchParams(location.search).get('s') || ''; } catch (e) {}
+  var valid = /^cs_(test|live)_[A-Za-z0-9]{8,250}$/.test(session);
+  var release = { released: true, date: '' };   // until we hear otherwise, assume the book is out
+
+  $('title').textContent = CONFIG.bookTitle;
+  $('copy').textContent = '\u00A9 ' + new Date().getFullYear() + ' NeuroResilience Consulting Inc. All rights reserved.';
+  $('help').href = 'mailto:' + CONFIG.supportEmail + '?subject=' + encodeURIComponent('Help with my book download');
+
+  function say(msg, kind, withHelp) {
+    statusEl.className = kind || '';
+    statusEl.textContent = msg;
+    if (withHelp) {
+      statusEl.appendChild(document.createTextNode(' '));
+      var a = document.createElement('a'); a.href = $('help').href; a.textContent = 'Email us'; statusEl.appendChild(a);
+    }
+  }
+  function fmtDate(s) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s || '')); if (!m) return '';
+    var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12));
+    try { return d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }); } catch (e) { return ''; }
+  }
+  function fullBookLine() { return release.date ? 'The full book will be available on ' + release.date + ', from this same link.' : 'The full book will follow on this same link.'; }
+
+  // before release: it is a pre-order and the link gives the preview; after release: the book
+  function applyEdition() {
+    if (release.released) {
+      $('h').textContent = 'Thank you'; btn.textContent = 'Download your book';
+      $('lead').textContent = 'Your payment went through. Tap the button to download your personal copy.'; $('pre-note').classList.add('hidden'); return;
+    }
+    var h = $('h'); h.textContent = 'Thank you for your '; var w = document.createElement('span'); w.style.whiteSpace = 'nowrap'; w.textContent = 'pre-order'; h.appendChild(w);   // keep "pre-order" on one line
+    btn.textContent = 'Download your preview';
+    $('lead').textContent = 'Your preview is ready now. ' + fullBookLine() + ' We will email you when it is ready.';
+    $('pre-note').textContent = 'This is a preview of the book. ' + fullBookLine(); $('pre-note').classList.remove('hidden');
+  }
+
+  var MESSAGES = {
+    bad_link:        ['This link looks incomplete. Please use the link from your purchase email.', true],
+    not_paid:        ["We couldn't confirm your payment yet. Wait a minute and try again.", true],
+    not_found:       ["We couldn't find that purchase. Please use the link from your purchase email.", true],
+    wrong_product:   ["That purchase isn't for this book.", true],
+    refunded:        ['This purchase was refunded, so the download is switched off.', true],
+    revoked:         ['This download has been switched off.', true],
+    expired:         ['This link has expired (links last 60 days).', true],
+    limit_reached:   ["You've used all 10 downloads for this purchase.", true],
+    origin_not_allowed: ['Please open this page from your purchase email.', true],
+    file_unavailable:   ["Something went wrong on our side. This didn't use up a download. Please try again in a few minutes.", true],
+    could_not_prepare:  ["Something went wrong on our side. This didn't use up a download. Please try again in a few minutes.", true],
+    stripe_unreachable: ['We could not reach the payment service. Please try again in a minute.', true],
+    server_error:       ["Something went wrong on our side. This didn't use up a download. Please try again in a few minutes.", true]
+  };
+
+  if (!valid) {
+    btn.classList.add('hidden'); $('notes').classList.add('hidden'); $('lead').textContent = '';
+    say('This page needs the personal link from your purchase email.', 'bad', true);
+    return;
+  }
+
+  // Ask whether the book is out yet. Opening the page never uses up a download.
+  fetch(CONFIG.functionUrl + '/?info=1', { cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j && typeof j.released === 'boolean') { release.released = j.released; release.date = fmtDate(j.release_date); applyEdition(); } })
+    .catch(function () {});
+
+  function nameFrom(res) {
+    var cd = res.headers.get('Content-Disposition') || '', m = /filename="([^"]+)"/.exec(cd);
+    return (m && m[1].replace(/[^A-Za-z0-9 _.\-]/g, '')) || 'Book.pdf';
+  }
+
+  btn.addEventListener('click', function () {
+    btn.disabled = true; say('Preparing your copy\u2026 this can take a few seconds.', '');
+    fetch(CONFIG.functionUrl + '/?s=' + encodeURIComponent(session), { method: 'GET', cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer' })
+      .then(function (res) {
+        if (res.ok && /pdf/.test(res.headers.get('Content-Type') || '')) {
+          var left = res.headers.get('X-Downloads-Remaining'), edition = res.headers.get('X-Book-Edition');
+          return res.blob().then(function (blob) {
+            var url = URL.createObjectURL(blob), a = document.createElement('a');
+            a.href = url; a.download = nameFrom(res); a.rel = 'noopener'; document.body.appendChild(a); a.click();
+            setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 4000);
+            var count = left !== null && left !== '' ? ' You have ' + left + ' download' + (left === '1' ? '' : 's') + ' left.' : '';
+            if (edition === 'preview') { release.released = false; applyEdition(); say('Done. Your preview is downloading.' + count + ' ' + fullBookLine(), 'ok'); }
+            else say('Done. Your book is downloading.' + count, 'ok');
+          });
+        }
+        return res.json().catch(function () { return {}; }).then(function (j) {
+          var m = MESSAGES[j && j.error] || ['Something went wrong. Please try again in a few minutes.', true];
+          say(m[0], 'bad', m[1]);
+        });
+      })
+      .catch(function () { say("We couldn't reach the download service. Check your connection and try again. This didn't use up a download.", 'bad', true); })
+      .then(function () { btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
