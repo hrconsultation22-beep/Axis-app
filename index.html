@@ -776,6 +776,16 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
 .axf-cta{border:1.5px dashed var(--purp);background:var(--purpp);border-radius:14px;padding:14px;font-size:14px;line-height:1.55;color:var(--soft)}
 .axf-cta b{display:block;color:var(--white);font-family:var(--ff-serif);font-size:19px;margin-bottom:2px}
 .axf-cta a{color:var(--purp);font-weight:700}
+
+/* ── Profile moved beside the colour button; heading higher and molecule lower on phones ── */
+#nav-profile{display:none!important}
+.tb-profile{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--ink2);color:var(--soft);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0}
+.tb-profile svg{width:18px;height:18px}
+.tb-profile.on{border-color:var(--gold);color:var(--gold);background:var(--goldp)}
+.tb-profile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.top-bar > div:last-child{gap:8px!important}
+#hero-section > div{padding-top:24px!important}
+#axis-mol-wrap{margin:clamp(40px,7vh,88px) 0 16px!important}
 </style>
 </head>
 <body>
@@ -794,6 +804,7 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
   </div>
   <div style="display:flex;align-items:center;gap:10px">
     <button class="theme-btn" id="theme-btn" aria-label="Change background colour" aria-haspopup="true" aria-expanded="false" onclick="toggleThemePop(event)">◐</button>
+ <button class="tb-profile nav-hidden" id="tb-profile" type="button" aria-label="Open your profile" title="Profile" onclick="switchView('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button>
     <div class="top-bar-right" id="top-bar-right">Mental wellness</div>
   </div>
 </div>
@@ -3265,6 +3276,8 @@ if (document.readyState === "loading") {
       var el = document.getElementById('nav-' + v);
       if (el) el.classList.toggle('nav-hidden', !hasProfile());
     });
+    var tb = document.getElementById('tb-profile');
+    if (tb) { tb.classList.toggle('nav-hidden', !hasProfile()); tb.classList.toggle('on', typeof currentView !== 'undefined' && currentView === 'profile'); }
   }
   ['switchView', 'showHero', 'showOnboarding', 'showMainApp'].forEach(function (name) {
     var original = window[name];
