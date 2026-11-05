@@ -786,6 +786,67 @@ body.landing .top-bar,body.landing #bottom-nav{display:none!important}
 .top-bar > div:last-child{gap:8px!important}
 #hero-section > div{padding-top:24px!important}
 #axis-mol-wrap{margin:clamp(40px,7vh,88px) 0 16px!important}
+
+/* ── Glass look: translucent tab bar, MyMind-style frosted feed cards, larger tab labels ── */
+#bottom-nav{background:color-mix(in srgb,var(--ink2) 58%,transparent)!important;-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);border-top:1px solid color-mix(in srgb,var(--white) 10%,transparent)!important}
+.nav-item{padding:4px 1px!important;min-width:0;gap:3px!important}
+.nav-icon{font-size:22px!important;line-height:1}
+.nav-label{font-size:clamp(10px,3.1vw,12px)!important;letter-spacing:.01em!important;text-transform:none!important;font-weight:600;white-space:nowrap}
+#axf{background:radial-gradient(900px 520px at 12% -8%,color-mix(in srgb,var(--purp) 24%,transparent),transparent 62%),radial-gradient(820px 520px at 100% 22%,color-mix(in srgb,var(--teal) 17%,transparent),transparent 62%),radial-gradient(760px 520px at 28% 112%,color-mix(in srgb,var(--gold) 15%,transparent),transparent 62%),var(--ink)}
+.axf-head,.axf-chips{background:color-mix(in srgb,var(--ink) 52%,transparent)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-color:color-mix(in srgb,var(--white) 8%,transparent)!important}
+.axf-card{background:color-mix(in srgb,var(--ink2) 44%,transparent);-webkit-backdrop-filter:blur(20px) saturate(1.25);backdrop-filter:blur(20px) saturate(1.25);border:1px solid color-mix(in srgb,var(--white) 11%,transparent);border-radius:24px;box-shadow:0 12px 32px rgba(0,0,0,.30)}
+.axf-band{background:transparent!important;border-bottom:0!important;padding:16px 18px 0!important;justify-content:space-between}
+.axf-pill{background:color-mix(in srgb,var(--c) 16%,transparent);border:1px solid color-mix(in srgb,var(--c) 38%,transparent);padding:4px 11px;border-radius:999px}
+.axf-big{font-size:22px!important;opacity:.92}
+.axf-img{width:calc(100% - 24px)!important;margin:12px 12px 0;border-radius:16px;aspect-ratio:4/3;max-height:none!important;object-fit:cover}
+.axf-try{background:color-mix(in srgb,var(--c) 12%,transparent)!important}
+.axf-ib,.axf-go{background:color-mix(in srgb,var(--white) 5%,transparent)}
+.axf-banner-crisis{-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.axf-sel{flex:0 0 auto;min-height:44px;padding:0 34px 0 16px;border-radius:999px;border:1.5px solid var(--border);background-color:transparent;color:var(--soft);font:600 14px Inter,system-ui,sans-serif;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5l5 5 5-5' fill='none' stroke='%23b8bdd4' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.axf-sel.on{border-color:var(--gold);color:var(--gold);background-color:color-mix(in srgb,var(--gold) 12%,transparent)}
+.axf-sel option{background:var(--ink2);color:var(--white)}
+.axf-cwrap{display:contents}
+.axf-cwrap[hidden]{display:none}
+.axf-chip[aria-pressed=true]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--gold)}
+.axf-sel:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.axf-sel{width:auto!important;max-width:100%}
+.axf-chips{flex-wrap:wrap!important;overflow-x:visible!important;row-gap:8px}
+
+/* ── Translucent top bar (content scrolls beneath it), feed title matches AXIS, slight 3D on the map nodes ── */
+#app{position:relative}
+.top-bar{position:absolute!important;top:0;left:0;right:0;background:color-mix(in srgb,var(--ink) 55%,transparent)!important;-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid color-mix(in srgb,var(--white) 9%,transparent)!important}
+#screen{padding-top:var(--tb-h,0px);scroll-padding-top:var(--tb-h,0px)}
+.axf-ttl{font-family:var(--ff-serif)!important;font-weight:600!important;font-size:20px!important;letter-spacing:0!important;line-height:1.1!important;margin:0!important;color:var(--white)}
+.axf-sub{font-size:10px;letter-spacing:.34em;text-transform:uppercase;margin:3px 0 0!important}
+.axf-x{width:auto!important;min-width:44px;height:44px!important;padding:6px!important;border:0!important;background:transparent!important;display:flex!important;align-items:center;justify-content:center;border-radius:12px!important}
+.axf-logo{width:45px;height:32px;object-fit:contain;display:block}
+.axf-ig{width:44px!important;height:44px!important;min-height:44px!important;padding:0!important;border-radius:50%!important;display:flex!important;align-items:center;justify-content:center;border:1.5px solid var(--gold);color:var(--gold);margin-left:auto;flex:0 0 auto}
+.axf-ig svg{width:22px;height:22px}
+#axis-mol [data-feat],#axis-mol [data-hub]{background-image:radial-gradient(circle at 32% 24%,rgba(255,255,255,.20),rgba(255,255,255,.06) 32%,transparent 50%),radial-gradient(circle at 50% 120%,rgba(0,0,0,.36),transparent 62%)!important;box-shadow:0 8px 18px rgba(0,0,0,.40),0 2px 4px rgba(0,0,0,.30),inset 0 2px 3px rgba(255,255,255,.16),inset 0 -7px 12px rgba(0,0,0,.34)!important}
+#axis-mol .mol-node:not(.on){background-image:radial-gradient(circle at 32% 24%,rgba(255,255,255,.10),transparent 48%)!important;box-shadow:0 4px 10px rgba(0,0,0,.28),inset 0 -5px 9px rgba(0,0,0,.22)!important}
+
+/* ── Feed header: the title is the drop-down, Local / Saved / Instagram are circles, and the bar floats over the posts ── */
+.axf-top{position:absolute;top:0;left:0;right:0;z-index:5;background:color-mix(in srgb,var(--ink) 52%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid color-mix(in srgb,var(--white) 8%,transparent)}
+.axf-top .axf-head,.axf-top .axf-chips{background:transparent!important;border:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.axf-scroll{position:absolute!important;inset:0;flex:none!important;padding-top:calc(var(--axf-top,0px) + 14px)!important}
+.axf-chips{padding-top:2px!important}
+.axf-chips[hidden]{display:none!important}
+.axf-head{gap:8px!important}
+.axf-titlebox{position:relative;flex:0 1 auto;min-width:0;padding:2px 4px;border-radius:10px}
+.axf-titlebox:has(.axf-topicsel:focus-visible){outline:3px solid var(--gold);outline-offset:2px}
+.axf-topicsel{position:absolute!important;inset:0;width:100%!important;height:100%!important;min-height:0!important;opacity:0;cursor:pointer;font-size:16px!important;padding:0!important;border:0!important}
+.axf-sub{display:flex!important;align-items:center;gap:6px;letter-spacing:.24em!important}
+.axf-sub svg{width:11px;height:11px;stroke:var(--gold);fill:none;stroke-width:2.4;flex:0 0 auto}
+.axf-circs{display:flex;align-items:center;gap:8px;margin-left:auto;flex:0 0 auto}
+.axf-circs .axf-ig{margin-left:0!important}
+.axf-circ{width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;border:1.5px solid var(--gold);background:color-mix(in srgb,var(--gold) 6%,transparent);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;flex:0 0 auto}
+.axf-circ svg{width:22px;height:22px}
+.axf-circ[aria-pressed=true]{background:color-mix(in srgb,var(--gold) 24%,transparent);box-shadow:0 0 0 2px color-mix(in srgb,var(--gold) 35%,transparent)}
+.axf-circ:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media (max-width:340px){.axf-head{padding-left:10px!important;padding-right:10px!important;gap:6px!important}.axf-circs{gap:6px}.axf-circ,.axf-ig{width:40px!important;height:40px!important;min-height:40px!important}.axf-circ svg{width:20px;height:20px}}
+
+/* ── Clear glass feed posts ── */
+.axf-card{background:linear-gradient(145deg,color-mix(in srgb,var(--white) 9%,transparent),color-mix(in srgb,var(--white) 2%,transparent))!important;-webkit-backdrop-filter:blur(26px) saturate(1.5);backdrop-filter:blur(26px) saturate(1.5);border:1px solid color-mix(in srgb,var(--white) 18%,transparent)!important;box-shadow:0 14px 34px rgba(0,0,0,.26),inset 0 1px 0 color-mix(in srgb,var(--white) 24%,transparent)!important}
 </style>
 </head>
 <body>
@@ -3278,6 +3339,8 @@ if (document.readyState === "loading") {
     });
     var tb = document.getElementById('tb-profile');
     if (tb) { tb.classList.toggle('nav-hidden', !hasProfile()); tb.classList.toggle('on', typeof currentView !== 'undefined' && currentView === 'profile'); }
+    var bar = document.querySelector('.top-bar');
+    document.documentElement.style.setProperty('--tb-h', (bar ? bar.offsetHeight : 0) + 'px');
   }
   ['switchView', 'showHero', 'showOnboarding', 'showMainApp'].forEach(function (name) {
     var original = window[name];
@@ -3291,6 +3354,8 @@ if (document.readyState === "loading") {
   });
   window.updateChrome = updateChrome;
   updateChrome();
+  window.addEventListener('resize', updateChrome);
+  if (window.ResizeObserver) { var _tbEl = document.querySelector('.top-bar'); if (_tbEl) new ResizeObserver(updateChrome).observe(_tbEl); }
   window.addEventListener('load', updateChrome);
   setTimeout(updateChrome, 1500);
 })();
@@ -4623,14 +4688,17 @@ async function bcOpen() {
   var VIEWS = ['home', 'dashboard', 'program', 'log', 'profile', 'food', 'crisis'];
   var CATS = {
     fitness: { label: 'Fitness', icon: '\uD83D\uDCAA', c: '--gold', s: '--goldp' },
-    food:    { label: 'Food', icon: '\uD83E\uDD57', c: '--teal', s: '--tealp' },
-    recipes: { label: 'Recipes', icon: '\uD83C\uDF73', c: '--teal', s: '--tealp' },
-    meals:   { label: 'Meals', icon: '\uD83C\uDF71', c: '--gold', s: '--goldp' },
+    food:    { label: 'Nutrition', icon: '\uD83E\uDD57', c: '--teal', s: '--tealp' },
+    recipes: { label: 'Recipe', icon: '\uD83C\uDF73', c: '--teal', s: '--tealp' },
+    meals:   { label: 'Meal', icon: '\uD83C\uDF71', c: '--gold', s: '--goldp' },
     local:   { label: 'Local', icon: '\uD83D\uDCCD', c: '--purp', s: '--purpp' },
-    mind:    { label: 'Mind & Rest', icon: '\uD83C\uDF19', c: '--purp', s: '--purpp' }
+    mind:    { label: 'Recovery', icon: '\uD83C\uDF19', c: '--purp', s: '--purpp' }
   };
   var ORDER = ['fitness', 'food', 'recipes', 'meals', 'local', 'mind'];
-  var FILTERS = [['all', 'All'], ['fitness', 'Fitness'], ['food', 'Food'], ['recipes', 'Recipes'], ['meals', 'Meals'], ['local', 'Local'], ['mind', 'Mind & Rest'], ['saved', 'Saved']];
+  var GROUPS = { nutrition: ['food', 'recipes', 'meals'], fitness: ['fitness'], recovery: ['mind'], local: ['local'] };
+  var TOPICS = [['all', 'Axis Feed'], ['nutrition', 'Nutrition'], ['fitness', 'Fitness'], ['recovery', 'Recovery']];
+  var TABS = [['local', 'Local'], ['saved', 'Saved']];
+  var CUISINES = [['any', 'Any cuisine'], ['maritime', 'Maritime & Canadian'], ['mediterranean', 'Mediterranean'], ['asian', 'Asian'], ['latin', 'Latin American'], ['southasian', 'South Asian'], ['middleeastern', 'Middle Eastern'], ['caribbean', 'Caribbean & African']];
   var PARTNER_EMAIL = 'neuroresiliencefitness@gmail.com';
   var IG_HANDLE = 'neuroresilience_fitness', IG_URL = 'https://www.instagram.com/neuroresilience_fitness/';
   var SHARE_URL = 'https://app.neuroresilienceconsulting.com';
@@ -4730,6 +4798,62 @@ async function bcOpen() {
       why: 'Clear answers keep you safe and help you eat what suits you.',
       tryIt: 'Next time, ask: \u201CWhat\u2019s in this, and where was it made?\u201D' },
 
+    { id: "c1", cat: "recipes", cuisine: "maritime", title: "Maple oat porridge with apple",
+      body: "Simmer half a cup of rolled oats with a cup of water or milk for five minutes. Stir in a chopped apple, a pinch of cinnamon and a small drizzle of maple syrup. Top with a few walnuts.",
+      why: "Oats give slow-release carbohydrate and fibre, and the nuts add protein and healthy fats.",
+      tryIt: "Swap the apple for blueberries when they are in season.", note: "Check nuts and milk for allergies." },
+    { id: "c2", cat: "meals", cuisine: "maritime", title: "Haddock and vegetable chowder",
+      body: "Soften an onion, celery and diced potato in a pot with a little oil. Add two cups of stock and simmer until tender. Add chunks of haddock and a splash of milk, then simmer gently for five minutes until the fish flakes.",
+      why: "Fish is a lean protein, and the vegetables make it a full meal in one pot.",
+      tryIt: "Serve it with a slice of whole-grain bread.", note: "Contains fish and milk. Cook fish until it flakes easily." },
+    { id: "c3", cat: "recipes", cuisine: "mediterranean", title: "Chickpea and cucumber salad",
+      body: "Toss a can of rinsed chickpeas with chopped cucumber, tomato, red onion and parsley. Dress with olive oil and lemon juice, then season lightly with salt and pepper.",
+      why: "Chickpeas bring fibre and plant protein, and olive oil adds healthy fats.",
+      tryIt: "Make a double batch for tomorrow\u2019s lunch.", note: "Rinsing canned chickpeas helps cut the salt." },
+    { id: "c4", cat: "meals", cuisine: "mediterranean", title: "Baked fish with tomatoes and olives",
+      body: "Place fish fillets in a dish with halved cherry tomatoes, a few olives, garlic and olive oil. Bake at 200\u00b0C (400\u00b0F) for 12 to 15 minutes, until the fish flakes easily.",
+      why: "Fish and vegetables make a light, protein-rich dinner.",
+      tryIt: "Add a side of whole-grain couscous or rice.", note: "Contains fish. Cook fish until it flakes easily." },
+    { id: "c5", cat: "recipes", cuisine: "asian", title: "Tofu and vegetable stir-fry",
+      body: "Fry cubed firm tofu until golden, then add sliced peppers, broccoli and carrots. Finish with garlic, ginger and a splash of low-sodium soy sauce. Serve over rice.",
+      why: "Tofu is a plant protein, and the colourful vegetables add fibre and vitamins.",
+      tryIt: "Use whatever vegetables you already have.", note: "Contains soy. Check sauces for wheat and other allergens." },
+    { id: "c6", cat: "recipes", cuisine: "asian", title: "Miso soup with greens",
+      body: "Warm four cups of water with a strip of kombu or some vegetable stock. Add cubed tofu and a handful of greens, then stir in two spoonfuls of miso once the pot is off the boil.",
+      why: "A warm, light bowl that is quick to make and easy to digest.",
+      tryIt: "Add a handful of cooked noodles to make it a meal.", note: "Miso is salty. Add it after the soup comes off the boil." },
+    { id: "c7", cat: "meals", cuisine: "latin", title: "Black bean and rice bowl",
+      body: "Warm black beans with cumin and garlic. Serve over rice with chopped tomato, avocado and a squeeze of lime.",
+      why: "Beans and rice together give plant protein, fibre and slow-release energy.",
+      tryIt: "Add a fried egg on top for extra protein.", note: "Rinse canned beans to cut the salt." },
+    { id: "c8", cat: "recipes", cuisine: "latin", title: "Eggs and salsa on a tortilla",
+      body: "Scramble or fry two eggs and serve them on a warm corn tortilla with salsa, a spoonful of beans and some greens.",
+      why: "Eggs, beans and a tortilla make a quick, balanced breakfast or lunch.",
+      tryIt: "Add sliced avocado if you have one.", note: "Cook eggs until firm." },
+    { id: "c9", cat: "recipes", cuisine: "southasian", title: "Red lentil dal",
+      body: "Simmer a cup of rinsed red lentils in three cups of water with turmeric until soft, about 20 minutes. Fry an onion, garlic, ginger and cumin seeds in a little oil and stir them in. Finish with a squeeze of lemon.",
+      why: "Lentils are rich in fibre and plant protein, and cook quickly.",
+      tryIt: "Serve with rice or flatbread and a spoonful of yogurt.", note: "Rinse lentils well before cooking." },
+    { id: "c10", cat: "meals", cuisine: "southasian", title: "Chickpea masala with rice",
+      body: "Simmer a can of rinsed chickpeas with chopped onion, tomato, garlic, ginger and garam masala for 15 minutes. Serve over rice or with flatbread.",
+      why: "A one-pot meal with plant protein, fibre and plenty of flavour.",
+      tryIt: "Stir in a handful of spinach at the end.", note: "Rinse canned chickpeas to cut the salt." },
+    { id: "c11", cat: "meals", cuisine: "middleeastern", title: "Hummus plate with vegetables",
+      body: "Spread hummus on a plate and add sliced cucumber, carrots, tomatoes and olives, with whole-grain pita on the side. Add a boiled egg for extra protein.",
+      why: "Chickpeas, vegetables and whole grains make a balanced, no-cook meal.",
+      tryIt: "Sprinkle with lemon juice and a little paprika.", note: "Hummus contains sesame (tahini). Check for allergies." },
+    { id: "c12", cat: "recipes", cuisine: "middleeastern", title: "Shakshuka",
+      body: "Simmer tomatoes, peppers, onion and garlic with cumin and paprika for ten minutes. Make small wells in the sauce, crack in eggs, cover, and cook until the whites are set.",
+      why: "Eggs and tomato-based vegetables make a warm, protein-rich meal.",
+      tryIt: "Mop it up with whole-grain bread.", note: "Cook eggs until firm." },
+    { id: "c13", cat: "meals", cuisine: "caribbean", title: "Rice and peas",
+      body: "Simmer rice with cooked kidney or pigeon peas, coconut milk, thyme, garlic and scallion until the liquid is absorbed.",
+      why: "Beans with rice give plant protein and slow-release energy.",
+      tryIt: "Serve with steamed greens.", note: "Use rinsed canned beans, or cook dried beans fully before using." },
+    { id: "c14", cat: "recipes", cuisine: "caribbean", title: "Peanut and greens stew",
+      body: "Simmer onion, tomato and ginger, then stir in a spoonful of peanut butter and some stock. Add greens and cubed sweet potato and cook until tender. Serve over rice.",
+      why: "Sweet potato, greens and peanuts give fibre, vitamins and healthy fats.",
+      tryIt: "Add chickpeas for extra protein.", note: "Contains peanuts. Check for allergies." },
     { id: 'm1', cat: 'mind', title: 'The physiological sigh',
       body: 'Breathe in through your nose, then take a second short sip of air on top. Let a long, slow breath out through your mouth. Repeat two or three times.',
       why: 'A longer exhale signals to your body that it can settle.',
@@ -4761,13 +4885,13 @@ async function bcOpen() {
   ];
 
   // ---------- state (stays on this device) ----------
-  var state = load(), remote = [], remoteAt = 0, remoteOrg = null, filter = 'all', current = [], shown = 0, lastFocus = null, io = null, toastTimer = null;
+  var state = load(), remote = [], remoteAt = 0, remoteOrg = null, filter = 'all', lastTopic = 'all', current = [], shown = 0, lastFocus = null, io = null, toastTimer = null;
   var el = {};
 
   function clean(a) { return Array.isArray(a) ? a.filter(function (x) { return typeof x === 'string' && x.length < 80; }).slice(-500) : []; }
   function load() {
-    try { var d = JSON.parse(localStorage.getItem(KEY)); if (d && typeof d === 'object') return { likes: clean(d.likes), saves: clean(d.saves), opened: !!d.opened }; } catch (e) {}
-    return { likes: [], saves: [], opened: false };
+    try { var d = JSON.parse(localStorage.getItem(KEY)); if (d && typeof d === 'object') return { likes: clean(d.likes), saves: clean(d.saves), opened: !!d.opened, cuisine: CUISINES.some(function (c) { return c[0] === d.cuisine; }) ? d.cuisine : 'any' }; } catch (e) {}
+    return { likes: [], saves: [], opened: false, cuisine: 'any' };
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function has(list, id) { return list.indexOf(id) !== -1; }
@@ -4823,14 +4947,19 @@ async function bcOpen() {
     var seed = SEED.filter(function (p) { return p.cat === cat && !p.pin; }), pins = SEED.filter(function (p) { return p.cat === cat && p.pin; });
     return remote.filter(function (p) { return p.cat === cat; }).concat(rotate(seed, dayNo())).concat(pins);
   }
+  function cuisineOk(p) { return state.cuisine === 'any' || !p.cuisine || p.cuisine === state.cuisine; }
+  function interleave(cats) {
+    var cols = rotate(cats, dayNo()).map(function (c) { return byCat(c).filter(cuisineOk); }), out = [], i = 0, more = true;
+    while (more) { more = false; cols.forEach(function (c) { if (i < c.length) { out.push(c[i]); more = true; } }); i++; }
+    return out;
+  }
   function build() {
     if (filter === 'saved') {
       var all = remote.concat(SEED); return state.saves.slice().reverse().map(function (id) { return all.filter(function (p) { return p.id === id; })[0]; }).filter(Boolean);
     }
-    if (filter !== 'all') { var l = byCat(filter); return filter === 'mind' ? SEED.filter(function (p) { return p.pin; }).concat(l.filter(function (p) { return !p.pin; })) : l; }
-    var cols = rotate(ORDER, dayNo()).map(byCat), out = [], i = 0, more = true;
-    while (more) { more = false; cols.forEach(function (c) { if (i < c.length) { out.push(c[i]); more = true; } }); i++; }
-    return out;
+    if (filter === 'all') return interleave(ORDER);
+    var l = interleave(GROUPS[filter] || []);
+    return filter === 'recovery' ? SEED.filter(function (p) { return p.pin; }).concat(l.filter(function (p) { return !p.pin; })) : l;
   }
 
   // ---------- drawing ----------
@@ -4842,6 +4971,30 @@ async function bcOpen() {
     if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { toast('Copied to share'); }, function () { toast('Sharing isn\u2019t available here'); }); return; }
     toast('Sharing isn\u2019t available here');
   }
+  // Photos for the built-in nutrition posts: upload seed/<post id>.jpg to your "feed" storage bucket and it shows up here by itself.
+  var noImg = {}; try { (JSON.parse(sessionStorage.getItem('axis_feed_noimg') || '[]') || []).forEach(function (k) { noImg[k] = 1; }); } catch (e) {}
+  function photoFor(p) {
+    if (p.img) return p.img;
+    if (p.remote || ['food', 'recipes', 'meals'].indexOf(p.cat) === -1 || typeof SUPABASE_URL !== 'string' || noImg[p.id]) return '';
+    return SUPABASE_URL.replace(/\/+$/, '') + '/storage/v1/object/public/feed/seed/' + p.id + '.jpg';
+  }
+  function igGlyph() {
+    var NS = 'http://www.w3.org/2000/svg', s = document.createElementNS(NS, 'svg');
+    ['viewBox:0 0 24 24', 'aria-hidden:true', 'fill:none', 'stroke:currentColor', 'stroke-width:1.8', 'stroke-linecap:round', 'stroke-linejoin:round'].forEach(function (a) { var i = a.indexOf(':'); s.setAttribute(a.slice(0, i), a.slice(i + 1)); });
+    function part(tag, attrs) { var e = document.createElementNS(NS, tag); Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); }); s.appendChild(e); }
+    part('rect', { x: '3', y: '3', width: '18', height: '18', rx: '5' }); part('circle', { cx: '12', cy: '12', r: '4.2' }); part('circle', { cx: '17.4', cy: '6.6', r: '1', fill: 'currentColor', stroke: 'none' });
+    return s;
+  }
+  function glyph(kind) {
+    var NS = 'http://www.w3.org/2000/svg', s = document.createElementNS(NS, 'svg');
+    ['viewBox:0 0 24 24', 'aria-hidden:true', 'fill:none', 'stroke:currentColor', 'stroke-width:1.8', 'stroke-linecap:round', 'stroke-linejoin:round'].forEach(function (a) { var i = a.indexOf(':'); s.setAttribute(a.slice(0, i), a.slice(i + 1)); });
+    function part(tag, attrs) { var e = document.createElementNS(NS, tag); Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); }); s.appendChild(e); }
+    if (kind === 'ig') { part('rect', { x: '3', y: '3', width: '18', height: '18', rx: '5' }); part('circle', { cx: '12', cy: '12', r: '4.2' }); part('circle', { cx: '17.4', cy: '6.6', r: '1', fill: 'currentColor', stroke: 'none' }); }
+    else if (kind === 'local') { part('path', { d: 'M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z' }); part('circle', { cx: '12', cy: '10', r: '2.4' }); }
+    else if (kind === 'saved') { part('path', { d: 'M6 3h12v18l-6-4.2L6 21z' }); }
+    else { part('path', { d: 'M6 9l6 6 6-6' }); }
+    return s;
+  }
   function iconBtn(label, glyph, pressed, onTap) {
     var b = mk('button', 'axf-ib', glyph); b.type = 'button'; b.setAttribute('aria-label', label); if (pressed !== null) b.setAttribute('aria-pressed', String(pressed));
     b.addEventListener('click', onTap); return b;
@@ -4849,7 +5002,7 @@ async function bcOpen() {
   function card(p) {
     var cat = CATS[p.cat], a = mk('article', 'axf-card'); a.setAttribute('data-id', p.id); a.setAttribute('data-cat', p.cat); a.style.setProperty('--c', 'var(' + cat.c + ')'); a.style.setProperty('--s', 'var(' + cat.s + ')');
     var band = mk('div', 'axf-band'); band.appendChild(mk('span', 'axf-pill', cat.label)); var big = mk('span', 'axf-big', cat.icon); big.setAttribute('aria-hidden', 'true'); band.appendChild(big); a.appendChild(band);
-    if (p.img) { var im = mk('img', 'axf-img'); im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.referrerPolicy = 'no-referrer'; im.src = p.img; im.addEventListener('error', function () { im.remove(); }); a.appendChild(im); }
+    var photo = photoFor(p); if (photo) { var im = mk('img', 'axf-img'); im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.referrerPolicy = 'no-referrer'; im.src = photo; im.addEventListener('error', function () { im.remove(); noImg[p.id] = 1; try { sessionStorage.setItem('axis_feed_noimg', JSON.stringify(Object.keys(noImg))); } catch (e) {} }); a.appendChild(im); }
     var b = mk('div', 'axf-body');
     if (p.hub) b.appendChild(mk('p', 'axf-hub', 'Partner hub \u00B7 ' + p.hub.name + (p.hub.region ? ' \u00B7 ' + p.hub.region : '')));
     b.appendChild(mk('h3', 'axf-title', p.title)); b.appendChild(mk('p', 'axf-text', p.body));
@@ -4882,8 +5035,8 @@ async function bcOpen() {
   }
   function draw() {
     el.list.textContent = ''; shown = 0; el.moreBtn = null; current = build();
-    if (filter === 'mind' || filter === 'all') {
-      if (filter === 'mind') { var cb = mk('div', 'axf-banner-crisis'); cb.appendChild(document.createTextNode('If you\u2019re struggling, you don\u2019t have to wait. Call or text ')); var tel = mk('a', '', '988'); tel.href = 'tel:988'; cb.appendChild(tel); cb.appendChild(document.createTextNode(' any time. In an emergency, call 911.')); el.list.appendChild(cb); }
+    if (filter === 'recovery') {
+      if (true) { var cb = mk('div', 'axf-banner-crisis'); cb.appendChild(document.createTextNode('If you\u2019re struggling, you don\u2019t have to wait. Call or text ')); var tel = mk('a', '', '988'); tel.href = 'tel:988'; cb.appendChild(tel); cb.appendChild(document.createTextNode(' any time. In an emergency, call 911.')); el.list.appendChild(cb); }
     }
     if (filter === 'local') {
       var cta = mk('div', 'axf-cta'); cta.appendChild(mk('b', '', 'Local hubs'));
@@ -4893,13 +5046,21 @@ async function bcOpen() {
     if (!current.length) { el.list.appendChild(mk('div', 'axf-empty', filter === 'saved' ? 'Nothing saved yet. Tap the bookmark on any post to keep it here.' : 'No posts yet.')); return; }
     more();
   }
-  function setFilter(f) {
-    filter = f; Array.prototype.forEach.call(el.chips.children, function (c) { c.setAttribute('aria-checked', String(c.getAttribute('data-f') === f)); });
-    draw(); el.scroll.scrollTop = 0;
+  function labelFor(f) { return { all: 'Feed', nutrition: 'Nutrition', fitness: 'Fitness', recovery: 'Recovery', local: 'Local', saved: 'Saved' }[f] || 'Feed'; }
+  function measureTop() { if (el.top && el.root) el.root.style.setProperty('--axf-top', el.top.offsetHeight + 'px'); }
+  function syncControls() {
+    var topicOn = ['all', 'nutrition', 'fitness', 'recovery'].indexOf(filter) !== -1;
+    if (topicOn) { lastTopic = filter; el.topic.value = filter; }
+    el.subTxt.textContent = labelFor(filter);
+    el.topic.classList.toggle('on', topicOn);
+    el.chips.hidden = filter !== 'nutrition'; el.cuisine.value = state.cuisine; el.cuisine.classList.toggle('on', state.cuisine !== 'any');
+    Array.prototype.forEach.call(el.root.querySelectorAll('.axf-circ[data-f]'), function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-f') === filter)); });
+    measureTop();
   }
+  function setFilter(f) { filter = f; syncControls(); draw(); el.scroll.scrollTop = 0; }
 
   // ---------- open / close ----------
-  function focusables() { return Array.prototype.slice.call(el.root.querySelectorAll('button, a[href]')).filter(function (n) { return !n.disabled && n.offsetParent !== null || n === el.close; }); }
+  function focusables() { return Array.prototype.slice.call(el.root.querySelectorAll('button, select, a[href]')).filter(function (n) { return !n.disabled && n.offsetParent !== null || n === el.close; }); }
   function onKey(e) {
     if (!el.root.classList.contains('open')) return;
     if (e.key === 'Escape') { e.preventDefault(); close(); return; }
@@ -4924,15 +5085,29 @@ async function bcOpen() {
   function init() {
     if (document.getElementById('axf')) return;
     var root = mk('div'); root.id = 'axf'; root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); root.setAttribute('aria-label', 'Axis Feed');
-    var head = mk('div', 'axf-head'); var x = mk('button', 'axf-x', '\u2715'); x.type = 'button'; x.setAttribute('aria-label', 'Close the feed'); x.addEventListener('click', function () { close(); });
-    var tt = mk('div'); tt.appendChild(mk('h2', 'axf-ttl', 'Axis Feed')); tt.appendChild(mk('p', 'axf-sub', 'Fitness \u00B7 Food \u00B7 Local \u00B7 Mind & Rest')); var ig = mk('a', 'axf-ig', 'Follow us'); ig.href = IG_URL; ig.target = '_blank'; ig.rel = 'noopener noreferrer'; ig.setAttribute('aria-label', 'Follow @' + IG_HANDLE + ' on Instagram (opens in a new tab)'); head.appendChild(x); head.appendChild(tt); head.appendChild(ig);
-    var chips = mk('div', 'axf-chips'); chips.setAttribute('role', 'radiogroup'); chips.setAttribute('aria-label', 'Choose a topic');
-    FILTERS.forEach(function (f) { var c = mk('button', 'axf-chip', f[1]); c.type = 'button'; c.setAttribute('role', 'radio'); c.setAttribute('data-f', f[0]); c.setAttribute('aria-checked', String(f[0] === 'all')); c.addEventListener('click', function () { setFilter(f[0]); }); chips.appendChild(c); });
+    var head = mk('div', 'axf-head'); var x = mk('button', 'axf-x');
+    (function () {
+      var src = ''; try { var bm = document.querySelector('.top-bar .brand-mark'); src = bm ? (bm.getAttribute('src') || '') : ''; } catch (e) {}
+      if (src) { var li = mk('img', 'axf-logo'); li.src = src; li.alt = ''; li.width = 45; li.height = 32; x.appendChild(li); } else { x.textContent = '\u2715'; }
+    })(); x.type = 'button'; x.setAttribute('aria-label', 'Close the feed'); x.addEventListener('click', function () { close(); });
+    var topicSel = mk('select', 'axf-sel axf-topicsel'); topicSel.setAttribute('aria-label', 'Topic'); TOPICS.forEach(function (t) { var o = mk('option', '', t[1]); o.value = t[0]; topicSel.appendChild(o); });
+    topicSel.addEventListener('change', function () { setFilter(topicSel.value); });
+    var tt = mk('div', 'axf-titlebox'); var ttl = mk('h2', 'axf-ttl', 'Axis'); var dot = mk('span', '', '.'); dot.style.color = 'var(--gold)'; ttl.appendChild(dot); tt.appendChild(ttl);
+    var subEl = mk('p', 'axf-sub'); var subTxt = mk('span', '', 'Feed'); subEl.appendChild(subTxt); subEl.appendChild(glyph('chev')); tt.appendChild(subEl); tt.appendChild(topicSel);
+    var circs = mk('div', 'axf-circs');
+    TABS.forEach(function (f) { var c = mk('button', 'axf-circ'); c.type = 'button'; c.setAttribute('data-f', f[0]); c.setAttribute('aria-pressed', 'false'); c.setAttribute('aria-label', f[0] === 'local' ? 'Local posts' : 'Saved posts'); c.title = f[1]; c.appendChild(glyph(f[0])); c.addEventListener('click', function () { setFilter(filter === f[0] ? lastTopic : f[0]); }); circs.appendChild(c); });
+    var ig = mk('a', 'axf-ig axf-circ'); ig.appendChild(glyph('ig')); ig.href = IG_URL; ig.target = '_blank'; ig.rel = 'noopener noreferrer'; ig.setAttribute('aria-label', 'Follow @' + IG_HANDLE + ' on Instagram (opens in a new tab)'); circs.appendChild(ig);
+    head.appendChild(x); head.appendChild(tt); head.appendChild(circs);
+    var chips = mk('div', 'axf-chips'); chips.setAttribute('role', 'group'); chips.setAttribute('aria-label', 'Cuisine'); chips.hidden = true;
+    var cuisineWrap = mk('span', 'axf-cwrap'); var cuisineSel = mk('select', 'axf-sel'); cuisineSel.setAttribute('aria-label', 'Cuisine');
+    CUISINES.forEach(function (c) { var o = mk('option', '', c[1]); o.value = c[0]; cuisineSel.appendChild(o); });
+    cuisineSel.addEventListener('change', function () { state.cuisine = cuisineSel.value; save(); syncControls(); draw(); }); cuisineWrap.appendChild(cuisineSel); chips.appendChild(cuisineWrap);
     var scroll = mk('div', 'axf-scroll'); var list = mk('div', 'axf-list'); var foot = mk('p', 'axf-foot', 'Educational content from NeuroResilience Consulting Inc. It is general information, not medical advice.');
     scroll.appendChild(list); scroll.appendChild(foot);
     var toastEl = mk('div'); toastEl.id = 'axf-toast'; toastEl.setAttribute('role', 'status'); toastEl.setAttribute('aria-live', 'polite');
-    root.appendChild(head); root.appendChild(chips); root.appendChild(scroll); root.appendChild(toastEl); document.body.appendChild(root);
-    el = { root: root, close: x, chips: chips, scroll: scroll, list: list, toast: toastEl, moreBtn: null };
+    var topBar = mk('div', 'axf-top'); topBar.appendChild(head); topBar.appendChild(chips); root.appendChild(topBar); root.appendChild(scroll); root.appendChild(toastEl); document.body.appendChild(root);
+    el = { root: root, close: x, chips: chips, scroll: scroll, list: list, toast: toastEl, moreBtn: null, topic: topicSel, cuisine: cuisineSel, cuisineWrap: cuisineWrap, top: topBar, subTxt: subTxt };
+    if (window.ResizeObserver) { new ResizeObserver(function () { measureTop(); }).observe(topBar); }
     document.addEventListener('keydown', onKey);
 
     var logo = document.querySelector('.top-bar .brand-mark');
